@@ -1,0 +1,11 @@
+# IDE files
+.idea/
+
+# Generated files
+dist-*/
+*.log
+
+# External dependencies
+node_modules/
+
+

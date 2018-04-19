@@ -1,0 +1,28 @@
+{
+  "presets": [
+    "react",
+    [
+      "env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 11"]
+      }
+    }]
+  ],
+  "plugins": [
+    [
+      "react-css-modules",
+      {
+        "webpackHotModuleReloading": true,
+        "generateScopedName": "[name]__[local]--[hash:base64:5]",
+        "filetypes": {
+          ".pcss": {
+            "syntax": "postcss-scss"
+          }
+        }
+      }
+    ],
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
+}

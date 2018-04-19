@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:ng="" xmlns:tb="" lang="en" xml:lang="en">
+<head>
+  <style type="text/css">@charset "UTF-8";
+  [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+    display: none !important;
+  }
+
+  ng\:form {
+    display: block;
+  }
+
+  .ng-animate-shim {
+    visibility: hidden;
+  }
+
+  .ng-anchor {
+    position: absolute;
+  }</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=1024, maximum-scale=1.3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="vizportal-config" data-buildid="ghfagimvf31wnrw6s9110pb9" data-staticassetsurlprefix="">
+  <link rel="stylesheet" type="text/css" href="https://ecsb00100f14.epam.com/vizportal.css?ghfagimvf31wnrw6s9110pb9">
+  <style></style>
+  <style></style>
+  <title>dima: Overview - Tableau Server</title>
+
+
+
+</head>
+<body class="tb-body" style="display: block;">
+<div ng-app="VizPortalRun" id="ng-app" ng-csp="" tb-window-resize="" class="tb-app ng-scope"><!-- uiView:  -->
+  <div ui-view="" ng-class="{'tb-column-flex-parent': isTouch()}" class="tb-app-inner ng-scope">
+    <tb:app-banner class="ng-scope ng-isolate-scope">
+      <div ng-show="shouldShowAppBanner()" class="tb-app-banner ng-hide"><img ng-src="img/close_app_banner.png"
+                                                                              ng-click="closeAppBanner()"
+                                                                              class="tb-app-banner-close"
+                                                                              src="img/close_app_banner.png"><img
+          ng-src="img/banner-logo-96.png" class="tb-banner-logo" src="img/banner-logo-96.png"><a
+          ng-click="redirectToApp()" class="tb-app-banner-link-area"><p class="tb-app-banner-text-area">
+        <span>Tableau</span><span class="tb-app-banner-link-text">Open in Tableau Mobile</span></p></a></div>
+    </tb:app-banner>
+    <div ng-class="{'tb-flex-fill': isTouch()}" class="tb-main tb-main-constrained ng-scope"><!-- uiView:  -->
+      <div ui-view="" autoscroll="false" tb-top="displaySettings.topBar.height" class="tb-bottom ng-scope"
+           style="top: 50px;"><!-- uiView:  -->
+        <div ui-view="" class="ng-scope">
+          <div class="tb-vizviewer-breadcrumbs ng-scope"><span props="breadcrumbsProps" class="ng-isolate-scope"><div
+              data-reactroot="" class="tb-breadcrumbs"><span class="tb-breadcrumb"><a data-tb-test-id="projects-link"
+                                                                                      href="#/projects">Home</a></span><span
+              class="tb-breadcrumb-divider">›</span><span class="tb-breadcrumb tb-link-project tb-max-quarter"
+                                                          title="minsk dev team"><a data-tb-test-id="project-link"
+                                                                                    href="#/projects/6/workbooks">minsk dev team</a></span><span
+              class="tb-breadcrumb-divider">›</span><span class="tb-breadcrumb tb-link-workbook tb-max-quarter"
+                                                          title="dima"><a data-tb-test-id="workbook-link"
+                                                                          href="#/workbooks/20/views">dima</a></span><span
+              class="tb-breadcrumb-divider">›</span><span><span
+              class="tb-breadcrumb-icon tb-link-view tb-max-quarter"></span><span class="tb-breadcrumb tb-last"
+                                                                                  title="Overview">Overview</span></span><span
+              class="tb-breadcrumb-favorite"><span class="ng-scope"><span tb-selected="selected()" tabindex="0"
+                                                                          tb-button-click="toggle($event)"
+                                                                          tb-enter="toggle($event)"
+                                                                          title="Click to toggle favorite"
+                                                                          class="tb-favorite-button ng-isolate-scope ng-not-empty ng-valid"
+                                                                          ng-model="vizProps.view.favorite"
+                                                                          on-add="addFavorite()"
+                                                                          on-remove="removeFavorite()"
+                                                                          tb-test-id="viz-viewer-breadcrumb-favorite"></span></span></span><span
+              style="position: absolute; right: 0px; padding-right: 18px;"><!-- react-empty: 17 --><span
+              title="Hide the navigation bar" data-tb-test-id="toggle-topbar-button"
+              style="cursor: pointer; background-color: rgb(245, 245, 245); vertical-align: middle; display: inline-block; width: 31px; height: 31px;"><span
+              style="margin: 6px; display: inline-block; width: 19px; height: 19px; background-repeat: no-repeat; background-image: url(&quot;img/hide_nav.svg?ghfagimvf31wnrw6s9110pb9&quot;);"> </span></span></span></div></span>
+          </div>
+          <div class="tb-vizviewer tb-scroll tb-viz-with-breadcrumb-bar ng-scope">
+            <div class="tb-fill">
+              <div class="tb-viz ng-isolate-scope" viz="viz" on-viz-sized="onVizSized()" tb-visible="vizInitialized"
+                   tb-test-id="viz" tb-window-max-width="tb-window-max-width"
+                   style="max-width: 1544px; visibility: visible; min-height: 1014px; min-width: 1016px;">
+                <iframe frameborder="0" allowtransparency="true" allowfullscreen="true" title="data visualization"
+                        marginheight="0" marginwidth="0" scrolling="no"
+                        style="display: block; width: 1529px; height: 1014px; visibility: visible;"
+                        src="./tableau-iframe-0.html">
+                </iframe>
+              </div>
+              <div ng-hide="commentingPaneEnabled" tb-visible="commentsAndTagsInitialized &amp;&amp; vizInitialized"
+                   class="tb-vizviewer-bottom" style="visibility: visible;"><!-- ngIf: allowedAction.seeComments -->
+                <div ng-if="allowedAction.seeComments" class="tb-vizviewer-bottom-column ng-scope">
+                  <div translate="commentsHeader" translate-values="{ITEM: comments.total}"
+                       translate-interpolation="localizedCountEscaped" class="tb-vizviewer-bottom-title ng-scope">
+                    Comments (0)
+                  </div>
+                  <div class="tb-vizviewer-bottom-content"><!-- ngIf: allowedAction.addComment -->
+                    <div tb-mousedown-outside="clickedInElement = false"
+                         class="tb-create-textarea ng-scope ng-isolate-scope" ng-if="allowedAction.addComment"
+                         max-character-length="4000" on-before-save="createComment(newText)">
+                      <div class="tb-create-textarea-wrapper"><textarea tabindex="1" tb-disabled="busy"
+                                                                        ng-focus="clickedInElement = true"
+                                                                        ng-model="text"
+                                                                        tb-test-id="input-create-textarea"
+                                                                        placeholder="Add a comment" maxlength="4000"
+                                                                        class="tb-enable-selection ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength"></textarea>
+                      </div>
+                      <div tb-visible="clickedInElement || text.length > 0" class="tb-create-textarea-bottom-panel"
+                           style="visibility: hidden;"><span tb-disabled="busy || !(text.length > 0)"
+                                                             tb-button-click="add()" tb-enter="add()"
+                                                             tb-test-id="btn-post-create-textarea"
+                                                             class="tb-outline-button tb-create-textarea-create-button tb-disabled"><span
+                          ng-show="busy"
+                          class="tb-icon-spinner tb-lr-padded-narrow ng-hide"></span><span>Post comment</span></span>
+                        <div class="tb-formatting-hints ng-isolate-scope ng-hide"
+                             tb-test-id="formatting-hints-create-textarea" ng-show="clickedInElement || text.length > 0"
+                             show-image-hint="false">
+                          <div class="tb-formatting-hints-buttons"><a tabindex="0"
+                                                                      tb-button-click="showFormattingHints = !showFormattingHints"
+                                                                      tb-enter="showFormattingHints = !showFormattingHints"
+                                                                      ng-class="showFormattingHints ? 'tb-hide-formatting-hints' : 'tb-show-formatting-hints'"
+                                                                      class="ng-binding tb-show-formatting-hints">Show
+                            formatting hints</a></div>
+                          <div ng-show="showFormattingHints" class="tb-formatting-hints-table container ng-hide">
+                            <table class="tb-formatting-hints-table">
+                              <thead>
+                              <tr>
+                                <th>To get this</th>
+                                <th>Type this</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                <td><a>Link</a></td>
+                                <td>"Link":http://www.example.com</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Bold</strong></td>
+                                <td>*Bold*</td>
+                              </tr>
+                              <tr>
+                                <td><em>Italics</em></td>
+                                <td>_Italics_</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <ins>Underline</ins>
+                                </td>
+                                <td>+Underline+</td>
+                              </tr><!-- ngIf: showImageHint --></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- end ngIf: allowedAction.addComment -->
+                    <div class="tb-vizviewer-comments"><!-- ngRepeat: comment in comments.items --></div>
+                    <span tb-disabled="busy" tb-button-click="increaseCommentList()"
+                          ng-hide="comments.total <= comments.items.length" class="tb-outline-button ng-hide">See more comments</span>
+                  </div>
+                </div><!-- end ngIf: allowedAction.seeComments -->
+                <div class="tb-vizviewer-bottom-column">
+                  <div class="tb-vizviewer-bottom-title">Tags</div>
+                  <div class="tb-vizviewer-bottom-content">
+                    <div class="tb-vizviewer-bottom-tags">
+                      <div class="tb-editable-tags-input ng-isolate-scope ng-valid ng-not-empty"
+                           ng-readonly="!canSetTags()" ng-model="vizProps.view.tags"
+                           on-before-save="changeTags(newTags)" tag-filter-state="main.site.content.site.views">
+                        <div class="tb-editable-tags-input-content">
+                          <div class="tb-tags-input ng-isolate-scope ng-not-empty ng-valid ng-hide"
+                               ng-model="tagsWithCounts" ng-show="editMode" text-input-model="newTag"
+                               tb-focus="editMode" tb-escape="cancel()">
+                            <div class="tb-tags-input-field"><!-- ngRepeat: tag in currentTags -->
+                              <div class="tb-tag-input-wrapper"><input type="text" ng-model="newTag"
+                                                                       ng-keydown="handleKeyEvent($event)"
+                                                                       maxlength="255" ng-trim="false"
+                                                                       placeholder="Add a tag"
+                                                                       class="tb-tag-input tb-enable-selection ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength">
+                              </div>
+                            </div>
+                            <div class="tb-popup ng-isolate-scope" show="!!newTag" position-corner="bl"
+                                 content-corner="tl"></div>
+                          </div>
+                          <span ng-show="!editMode"><!-- ngRepeat: tag in tagsWithCounts --></span></div>
+                        <div class="tb-editable-tags-input-buttons"><!-- ngIf: !readonly && !editMode --><span
+                            ng-if="!readonly &amp;&amp; !editMode" tb-button-click="edit()"
+                            tb-test-id="settings-action-change-tags" class="tb-outline-button ng-scope">Edit Tags</span>
+                          <!-- end ngIf: !readonly && !editMode --><!-- ngIf: editMode --><!-- ngIf: editMode --></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tb-vizviewer-bottom-link"><a ng-href="/vizql/showadminview/views/WhoHasSeen?views_id=170"
+                                                         ng-show="shouldShowWhoHasSeenThisView()"
+                                                         href="/vizql/showadminview/views/WhoHasSeen?views_id=170"
+                                                         class="ng-hide">Who has seen this view?</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div tb-height="settings.height" class="tb-top-bar ng-isolate-scope" settings="displaySettings.topBar"
+           style="height: 50px;">
+        <div ng-hide="settings.collapsed" class="tb-top-bar-contents"><span props="topBarProps"
+                                                                            class="ng-isolate-scope"><div
+            data-reactroot="" style="background-color: rgb(42, 87, 117);"><a href="#/projects"
+                                                                             data-tb-test-id="top-bar-logo-link"
+                                                                             tabindex="-1" title="Tableau Server"
+                                                                             style="width: 132px; height: 27px; background-image: url(&quot;img/tableau_mono_logo.svg?ghfagimvf31wnrw6s9110pb9&quot;); display: inline-block; margin: 11px 48px 12px 18px; white-space: pre; text-decoration: none;"> </a><div
+            style="position: absolute; top: 0px; left: 198px; right: 0px; line-height: 50px;"><div
+            style="display: table; width: 100%; white-space: nowrap; font-size: 13px;"><div style="display: table-row;"><div
+            style="display: table-cell; vertical-align: middle;"><div
+            style="background: inherit; line-height: 50px; position: relative;"><div
+            style="visibility: inherit; background: inherit; max-width: 974px;"><div
+            style="visibility: inherit; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;"><div
+            style="display: table-cell; vertical-align: middle;"><div style="margin-left: 15px; width: 464px;"><span
+            class="ng-scope"><span class="tb-omnibox ng-isolate-scope" width="464" search-open="true"
+                                   ng-show="showSiteControls()" closed="closed(event)"><div class="tb-omnibox-text-box"><div
+            class="tb-search-box"><div class="tb-text-box-holder ng-isolate-scope" tb-test-id="omnibox-input-id"
+                                       tb-text-box-model="searchText" tb-text-box-keydown="keydown($event)"
+                                       tb-text-box-placeholder="'Search'" tb-text-box-name="omniboxTextBox"
+                                       tb-text-box-clearable="false" tb-text-box-clear="clearSearch()"><div
+            ng-class="{'tb-disabled': disabled, 'tb-enabled': !disabled, 'tb-clearable': (clearable &amp;&amp; !!textValue) }"
+            class="tb-text-box-border tb-enabled"><input type="text" min="" max="" match-data="" placeholder="Search"
+                                                         title="Search" ng-disabled="disabled" ng-required="required"
+                                                         ng-model="textValue" ng-model-options="options || {}"
+                                                         ng-keydown="keydown({$event: $event})"
+                                                         tb-enter="modelCtrl.$commitViewValue(); onEnter({$event: $event}); triggerEnter()"
+                                                         ng-paste="onPaste()" tb-auto-select="autoSelect"
+                                                         tb-focus="focus" tabindex=""
+                                                         tb-test-id="omnibox-input-id-input" autocomplete="off"
+                                                         autocorrect="off" autocapitalize="off" spellcheck="false"
+                                                         ng-trim="true"
+                                                         class="tb-text-box-input tb-enable-selection ng-pristine ng-valid ng-empty ng-valid-required ng-touched"
+                                                         name="omniboxTextBox"></div>
+          <!-- ngIf: clearable --></div></div></div><div class="tb-popup ng-isolate-scope"
+                                                         show="showResults || showNoResults" position-corner="bl"
+                                                         content-corner="tl"></div></span></span></div></div></div><div
+            style="visibility: hidden;"><a href="/#/projects" data-tb-test-id="top-nav-site-content"
+                                           style="text-decoration: none; display: inline-block; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); background-color: rgb(28, 57, 77); padding-left: 15px; padding-right: 15px;"><span
+            style="opacity: 1;">Content</span></a><a href="/#/users" data-tb-test-id="top-nav-site-users"
+                                                     style="text-decoration: none; display: inline-block; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); background-color: inherit; padding-left: 15px; padding-right: 15px;"><span
+            style="opacity: 0.85;">Users</span></a><a href="/#/groups" data-tb-test-id="top-nav-site-groups"
+                                                      style="text-decoration: none; display: inline-block; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); background-color: inherit; padding-left: 15px; padding-right: 15px;"><span
+            style="opacity: 0.85;">Groups</span></a><a href="/#/schedules" data-tb-test-id="top-nav-site-schedules"
+                                                       style="text-decoration: none; display: inline-block; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); background-color: inherit; padding-left: 15px; padding-right: 15px;"><span
+            style="opacity: 0.85;">Schedules</span></a><a href="/#/tasks" data-tb-test-id="top-nav-site-tasks"
+                                                          style="text-decoration: none; display: inline-block; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); background-color: inherit; padding-left: 15px; padding-right: 15px;"><span
+            style="opacity: 0.85;">Tasks</span></a><a href="/#/server/status" data-tb-test-id="top-nav-server-status"
+                                                      style="text-decoration: none; display: inline-block; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); background-color: inherit; padding-left: 15px; padding-right: 15px;"><span
+            style="opacity: 0.85;">Status</span></a></div></div></div></div><div
+            style="display: table-cell; vertical-align: middle; width: 100%; text-align: right;"><div><span
+            data-tb-test-id="alerts-menu"
+            style="position: relative; display: inline-block; margin-right: 16px; vertical-align: top; line-height: 50px;"><span
+            data-tb-test-id="alerts-menu-button" style="cursor: pointer;"><span
+            style="display: block; height: 50px; line-height: 50px; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 10px; letter-spacing: 0.08em; color: rgb(255, 255, 255); opacity: 0.85; padding-left: 22px; background-image: url(&quot;img/alert_header_icon.svg?ghfagimvf31wnrw6s9110pb9&quot;); background-position: left center; background-repeat: no-repeat; background-size: 19px 19px;"></span></span></span><span
+            data-tb-test-id="favorites-menu"
+            style="position: relative; display: inline-block; margin-right: 16px; vertical-align: top; line-height: 50px;"><span
+            data-tb-test-id="favorites-menu-button" style="cursor: pointer;"><span
+            style="display: block; height: 50px; line-height: 50px; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); opacity: 0.85; padding-left: 22px; background-image: url(&quot;img/star_header_icon.svg?ghfagimvf31wnrw6s9110pb9&quot;); background-position: left center; background-repeat: no-repeat; background-size: 19px 19px;"></span></span></span><span
+            data-tb-test-id="help-menu"
+            style="position: relative; display: inline-block; margin-right: 16px; vertical-align: top; line-height: 50px;"><span
+            data-tb-test-id="help-menu-button" style="cursor: pointer;"><span
+            style="display: block; height: 50px; line-height: 50px; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); opacity: 0.85; padding-left: 22px; background-image: url(&quot;img/help_header_icon.svg?ghfagimvf31wnrw6s9110pb9&quot;); background-position: left center; background-repeat: no-repeat; background-size: 19px 19px;"></span></span></span><span
+            data-tb-test-id="user-menu"
+            style="position: relative; display: inline-block; margin-right: 16px; vertical-align: top; line-height: 50px;"><span
+            data-tb-test-id="user-menu-button" style="cursor: pointer;"><span
+            style="display: block; height: 50px; line-height: 50px; font-family: BentonSans-Book, Arial, Helvetica, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: rgb(255, 255, 255); opacity: 0.85; padding-left: 0px; background-image: url(&quot;img/dropdown_arrow_header_icon.svg?ghfagimvf31wnrw6s9110pb9&quot;); background-position: right center; background-repeat: no-repeat; background-size: 19px 19px; padding-right: 19px;">Aliaksandr Varachai</span></span></span></div></div></div></div></div></div></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="ng-isolate-scope"><div data-reactroot="" class="tb-toaster tb-enable-selection"></div></span>
+</body>
+</html>

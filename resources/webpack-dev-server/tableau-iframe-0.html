@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html class="dj_khtml dj_safari dj_contentbox" lang="en">
+<head>
+  <meta http-equiv="Expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="viewport" content="width=device-width, maximum-scale=2.0">
+  <title>
+    Workbook: Overview2</title>
+  <style type="text/css">
+    html body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #tabBootErr {
+      display: none;
+      position: absolute;
+      top: 100px;
+      width: 300px;
+      left: 50%;
+      margin-left: -150px;
+      border: 1px solid black;
+      background: white;
+      padding: 0;
+      box-shadow: 0px 5px 10px #adadad;
+      font-family: Arial, Helvetica, sans-serif;
+      z-index: 999;
+    }
+
+    #tabBootErrTitle {
+      font-size: 11pt;
+      font-weight: bold;
+      color: #1F437D;
+      background-color: #EBEEF3;
+      padding: 5px 6px 3px 6px;
+    }
+
+    #tabBootErrBody {
+      overflow: auto;
+      color: #333333;
+      font-size: 10pt;
+      font-weight: normal;
+      background: white;
+      border: none;
+      border-top: 1px solid black;
+      padding: 10px;
+      -moz-user-select: text;
+      -webkit-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+
+    #tabBootErrMsg {
+      white-space: pre-line;
+    }
+  </style>
+  <link href="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/tableau/web/css/tableau.css" media="screen"
+        rel="Stylesheet" type="text/css">
+  <link href="https://ecsb00100f14.epam.com/vizql/v_103001706152100/css/vqlweb.css" media="screen" rel="Stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://ecsb00100c96.epam.com:444/popup.css">
+  <link rel="stylesheet" type="text/css" href="https://ecsb00100c96.epam.com:444/bootstrap_guided_tour.css">
+  <style></style>
+  <style type="text/css"></style>
+  <link type="text/css" rel="stylesheet" href="https://ecsb00100f14.epam.com/vizql/v_103001706152100/css/leaflet.css">
+  <style type="text/css" id="tableau_base_widget_FilterPanel_0-style"></style>
+  <style type="text/css" id="tableau_base_widget_FilterPanel_1-style"></style>
+
+
+  <script id="one-click-support" src="./one-click-support.js" async defer></script>
+
+</head>
+<body class="tundra tableau " marginwidth="0" marginheight="0"
+      style="user-select: none; -webkit-tap-highlight-color: transparent;">
+<style>
+  #loadingSpinner {
+    top: 20%;
+    width: 100%;
+    position: fixed; /* works everywhere but mobile pre-iOS-5 */
+    z-index: 991;
+    text-align: center;
+    cursor: wait;
+  }
+  #svg-spinner, #svg-spinner-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  #svg-spinner-container {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+
+  }
+
+  #svg-spinner {
+    width: 50px;
+    height: 50px;
+    -webkit-animation: svg-spinner-animation 1s linear infinite;
+    animation: svg-spinner-animation 1s linear infinite;
+  }
+
+  @-webkit-keyframes svg-spinner-animation {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes svg-spinner-animation {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  #loadingGlassPane {
+    background-color: #EBEBEB;
+    opacity: 0.24;
+  }
+</style>
+
+<div id="initializing_thin_client" class="wcBody">
+  <div id="loadingSpinner" style="transition: opacity 150ms; opacity: 0; display: none;">
+    <div id="svg-spinner-container" style="background: rgba(255, 255, 255, 0.6);">
+      <div id="svg-spinner">
+        <svg viewBox="0 0 50 50">
+          <g>
+            <path
+                d="M42.7,7.3L40,10c3.8,3.8,6.2,9.1,6.2,15c0,11.7-9.5,21.1-21.1,21.1C13.3,46.1,3.9,36.7,3.9,25H0c0,13.8,11.2,25,25,25c13.8,0,25-11.2,25-25C50,18.1,47.2,11.9,42.7,7.3z"
+                style="fill:#616570;"></path>
+          </g>
+          <g>
+            <defs>
+              <path id="svg-spinner-circle"
+                    d="M25,50C11.2,50,0,38.8,0,25C0,11.2,11.2,0,25,0c13.8,0,25,11.2,25,25C50,38.8,38.8,50,25,50z M25,3.9C13.3,3.9,3.9,13.3,3.9,25c0,11.7,9.5,21.1,21.1,21.1S46.1,36.7,46.1,25C46.1,13.3,36.7,3.9,25,3.9z"></path>
+            </defs>
+            <clipPath id="svg-spinner-clippath">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-spinner-circle"
+                   style="overflow:visible;"></use>
+            </clipPath>
+            <linearGradient id="svg-spinner-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="12.4998" x2="50"
+                            y2="12.4998">
+              <stop offset="0" style="stop-color:#616570;stop-opacity:0"></stop>
+              <stop offset="0.15" style="stop-color:#616570;stop-opacity:0.04"></stop>
+              <stop offset="0.3" style="stop-color:#616570;stop-opacity:0.16"></stop>
+              <stop offset="0.45" style="stop-color:#616570;stop-opacity:0.36"></stop>
+              <stop offset="0.61" style="stop-color:#616570;stop-opacity:0.64"></stop>
+              <stop offset="0.76" style="stop-color:#616570"></stop>
+            </linearGradient>
+            <polygon points="25,25 0,25 0,0 50,0 "
+                     style="clip-path:url(#svg-spinner-clippath);fill:url(#svg-spinner-gradient);"></polygon>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="wcGlassPane" id="loadingGlassPane"
+       style="transition: opacity 150ms; opacity: 0; display: none; cursor: default;"></div>
+</div>
+<div id="centeringContainer">
+  <div id="tabBootErr" class="tabErrorDialog">
+    <div id="tabBootErrTitle">Unexpected Error</div>
+    <div id="tabBootErrBody">An unexpected error occurred. If you continue to receive this error please contact your
+      Tableau Server Administrator.
+      <div id="tabBootErrMsg"></div>
+    </div>
+  </div>
+
+  <div class="tab-viz-client-container">
+    <div class="tab-toolbar-container" style="height: 27px; visibility: visible;">
+      <div class="tab-toolbar tab-fill tab-widget horizontalLabels" style="height: 27px;">
+        <div class="tab-vizItems tab-fill-left showLabels">
+          <div class="tabToolbarButton tab-widget undo disabled" role="button" aria-label="Undo" tabindex="-1"
+               style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+              class="tabToolbarButtonImg tab-icon-undo"></span><span class="tabToolbarButtonText">Undo</span></div>
+          <div class="tabToolbarButton tab-widget redo disabled" role="button" aria-label="Redo" tabindex="-1"
+               style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+              class="tabToolbarButtonImg tab-icon-redo"></span><span class="tabToolbarButtonText">Redo</span></div>
+          <div class="tabToolbarButton tab-widget revert disabled" role="button" aria-label="Revert" tabindex="-1"
+               style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+              class="tabToolbarButtonImg tab-icon-revert"></span><span class="tabToolbarButtonText">Revert</span></div>
+          <div class="tabToolbarButton tab-widget refresh" role="button" aria-label="Refresh" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+              class="tabToolbarButtonImg tab-icon-refresh"></span><span class="tabToolbarButtonText">Refresh</span>
+          </div>
+          <div class="tabToolbarButton tab-widget updates" role="button" aria-label="Pause" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+              class="tabToolbarButtonImg tab-icon-pause-updates"></span><span class="tabToolbarButtonText">Pause</span>
+          </div>
+        </div>
+        <div class="tab-publicItems" style="display: none;">
+          <a class="tab-publicLogoLink" target="_blank"></a>
+          <div class="tab-belowPublicLogo"></div>
+        </div>
+        <div class="tab-nonVizItems tab-fill-right showLabels">
+          <div class="tabToolbarButton tab-widget customviews" role="button" aria-label="Custom views" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent; width: 115px;"><span
+              class="tabToolbarButtonImg tab-icon-customviews"></span><span class="tabToolbarButtonText"
+                                                                            style="max-width: 160px;">View: Original</span>
+          </div>
+          <div class="tabToolbarButton tab-widget alert" role="button" aria-label="Alert" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent; width: 69px;"><span
+              class="tabToolbarButtonImg tab-icon-alert"></span><span class="tabToolbarButtonText">Alert</span></div>
+          <div class="tabToolbarButton tab-widget share" role="button" aria-label="Share" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent; width: 74px;"><span
+              class="tabToolbarButtonImg tab-icon-share"></span><span class="tabToolbarButtonText">Share</span></div>
+          <div class="tabToolbarButton tab-widget download" role="button" aria-label="Download" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent; width: 95px;"><span
+              class="tabToolbarButtonImg tab-icon-download"></span><span class="tabToolbarButtonText">Download</span>
+          </div>
+          <div class="tabToolbarButton tab-widget enterFullscreen" role="button" aria-label="Full Screen" tabindex="0"
+               style="user-select: none; -webkit-tap-highlight-color: transparent; width: 101px;"><span
+              class="tabToolbarButtonImg tab-icon-enterFullscreen"></span><span
+              class="tabToolbarButtonText">Full Screen</span></div>
+        </div>
+        <div></div>
+      </div>
+      <div class="tab-ReactView tab-toolbar-dialoghost"><!-- react-empty: 1 --></div>
+    </div>
+
+    <div class="tabbedNavigationWrapper" id="tabbedNavigationWrapper" style="visibility: visible;">
+      <div style="width:100%;" class="tabbedNavigationOuterWrapper dijitContainer tableauTabbedNavigation"
+           role="navigation" id="tabbedNavigation" widgetid="tabbedNavigation">
+        <div id="container" dojotype="dijit.layout.LayoutContainer" style="width: 100%; height: 100%;"
+             dojoattachpoint="_innerWrapper" widgetid="container" class="dijitContainer dijitLayoutContainer"><span
+            class="dijit dijitReset dijitLeft dijitInline tabsMenuBtn dijitButton dijitAlignLeft"
+            dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+            widgetid="menuBtn" style="display: none; left: 0px; top: 0px; right: auto; bottom: auto; height: 22px;"
+            tabindex="-1" aria-disabled="true"><span class="dijitReset dijitRight dijitInline"><span
+            class="dijitReset dijitInline dijitButtonNode"><button
+            class="dijitReset dijitStretch dijitButtonContents tnMenuButton" dojoattachpoint="titleNode,focusNode"
+            name="" type="button" wairole="button" waistate="labelledby-menuBtn_label" role="button"
+            aria-labelledby="menuBtn_label" id="menuBtn" tabindex="-1"><span class="dijitReset dijitInline"
+                                                                             dojoattachpoint="iconNode"><span
+            class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+            class="dijitReset dijitInline dijitButtonText" id="menuBtn_label"
+            dojoattachpoint="containerNode"></span></button></span></span></span><span
+            class="dijit dijitReset dijitLeft dijitInline tabsLeftBtn dijitAlignLeft dijitButton dijitButtonDisabled dijitDisabled"
+            dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+            widgetid="dijit_form_Button_0"
+            style="display: none; left: 0px; top: 0px; right: auto; bottom: auto; height: 22px;" role="button"
+            aria-label="Scroll Sheet Tabs Left" aria-disabled="true"><span
+            class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+            class="dijitReset dijitStretch dijitButtonContents tnLeftButtonDisabled tnLeftButton"
+            dojoattachpoint="titleNode,focusNode" name="" type="button" wairole="button"
+            waistate="labelledby-dijit_form_Button_0_label" role="button" aria-labelledby="dijit_form_Button_0_label"
+            id="dijit_form_Button_0" disabled="" aria-disabled="true" tabindex="-1"><span class="dijitReset dijitInline"
+                                                                                          dojoattachpoint="iconNode"><span
+            class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+            class="dijitReset dijitInline dijitButtonText" id="dijit_form_Button_0_label"
+            dojoattachpoint="containerNode"></span></button></span></span></span><span
+            class="dijit dijitReset dijitLeft dijitInline tabsRightBtn dijitAlignRight dijitButton dijitButtonDisabled dijitDisabled"
+            dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+            widgetid="dijit_form_Button_1"
+            style="display: none; left: 1779px; top: 0px; right: auto; bottom: auto; height: 22px;" role="button"
+            aria-label="Scroll Sheet Tabs Right" aria-disabled="true"><span
+            class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+            class="dijitReset dijitStretch dijitButtonContents tnRightButtonDisabled tnRightButton"
+            dojoattachpoint="titleNode,focusNode" name="" type="button" wairole="button"
+            waistate="labelledby-dijit_form_Button_1_label" role="button" aria-labelledby="dijit_form_Button_1_label"
+            id="dijit_form_Button_1" disabled="" aria-disabled="true" tabindex="-1"><span class="dijitReset dijitInline"
+                                                                                          dojoattachpoint="iconNode"><span
+            class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+            class="dijitReset dijitInline dijitButtonText" id="dijit_form_Button_1_label"
+            dojoattachpoint="containerNode"></span></button></span></span></span>
+          <div dojotype="dijit.layout.LayoutContainer" layoutalign="client" dojoattachpoint="_containerNode"
+               id="dijit_layout_LayoutContainer_0" widgetid="dijit_layout_LayoutContainer_0"
+               class="dijitContainer dijitLayoutContainer dijitAlignClient"
+               style="left: 0px; top: -1px; right: auto; bottom: auto; width: 1779px; height: 22px;">
+            <div class="dijitTabContainerTop-tabs" dojoattachpoint="_scrollNode" role="tablist">
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_0" class=" dijitTab dijitTabChecked dijitChecked"
+                   aria-controls="tabViewer" aria-selected="true" tabindex="0">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_0"
+                          value="Overview" tabindex="-1">Overview</span><img class="dijitTabButtonSpacer"
+                                                                             src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                             role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_1" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_1"
+                          value="Product" tabindex="-1">Product</span><img class="dijitTabButtonSpacer"
+                                                                           src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                           role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_2" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_2"
+                          value="Customers" tabindex="-1">Customers</span><img class="dijitTabButtonSpacer"
+                                                                               src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                               role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_3" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_3"
+                          value="Shipping" tabindex="-1">Shipping</span><img class="dijitTabButtonSpacer"
+                                                                             src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                             role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_4" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_4"
+                          value="Performance" tabindex="-1">Performance</span><img class="dijitTabButtonSpacer"
+                                                                                   src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                                   role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_5" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_5"
+                          value="Commission Model" tabindex="-1">Commission Model</span><img
+                      class="dijitTabButtonSpacer"
+                      src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                      role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_6" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_6"
+                          value="Order Details" tabindex="-1">Order Details</span><img class="dijitTabButtonSpacer"
+                                                                                       src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                                       role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_7" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_7"
+                          value="Forecast" tabindex="-1">Forecast</span><img class="dijitTabButtonSpacer"
+                                                                             src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                             role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_8" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_8"
+                          value="What If Forecast" tabindex="-1">What If Forecast</span><img
+                      class="dijitTabButtonSpacer"
+                      src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                      role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div wairole="presentation" dojoattachevent="onclick:onClick,onmouseenter:_onMouse,onmouseleave:_onMouse"
+                   role="tab" widgetid="tableauTabbedNavigation_tab_9" class=" dijitTab" aria-controls="tabViewer"
+                   aria-selected="false" tabindex="-1">
+                <div wairole="presentation" class="dijitTabInnerDiv" dojoattachpoint="innerDiv" role="presentation">
+                  <div wairole="presentation" class="dijitTabContent" dojoattachpoint="tabContent" role="presentation">
+                    <span dojoattachpoint="containerNode,focusNode" class="tabLabel" id="tableauTabbedNavigation_tab_9"
+                          value="data" tabindex="-1">data</span><img class="dijitTabButtonSpacer"
+                                                                     src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif"
+                                                                     role="presentation">
+                    <div class="dijitInline closeNode" dojoattachpoint="closeNode"
+                         dojoattachevent="onclick:onClickCloseButton" style="display: none;">
+                      <img src="https://ecsb00100f14.epam.com/vizql/v_103001706152100/javascripts/built-dojo/dojo/resources/blank.gif" alt=""
+                           dojoattachpoint="closeButtonNode" class="closeImage"
+                           dojoattachevent="onmouseenter:_onMouse, onmouseleave:_onMouse" statemodifier="CloseButton">
+                      <span dojoattachpoint="closeText" class="closeText">x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tabViewer" class="wcBody tab-widget" style="visibility: hidden;" role="tabpanel">
+    <div class="tab-workbook tab-widget" role="application">
+      <div class="dashboardSpacer"
+           style="width: 1779px; height: 620px; background-color: rgb(255, 255, 255); visibility: visible;">
+        <div class="tab-dashboard tab-widget" role="main"
+             style="height: 320px; width: 1779px; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">
+          <div class="tab-zone no-spacing tab-widget tabZone-title fade-bg" id="tabZoneId33"
+               style="z-index: 13; background-color: rgba(255, 255, 255, 0); width: 1763px; height: 21px; top: 8px; left: 8px;">
+            <div role="heading" aria-level="1" class="tab-textRegion tab-widget fade-in"
+                 style="user-select: none; -webkit-tap-highlight-color: transparent;">
+              <div class="tab-textRegion-boundary"
+                   style="border-width: 1px; border-color: rgb(172, 168, 153); border-style: none;">
+                <div class="tab-textRegion-content tab-selectable" style="width: 100%; top: 50%; margin-top: -10px;">
+                  <span style="white-space:pre-wrap;tab-size:10;-moz-tab-size:10"><div style="text-align:left;"><span
+                      style="font-family: &quot;Tableau Book&quot;, Tableau, Arial, sans-serif; font-size: 15px; line-height: 21px; color: rgb(51, 51, 51); font-weight: normal; font-style: normal; text-decoration: none;">Executive Overview - Profitability</span></div></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-zone no-spacing tab-widget tabZone-viz fade-bg" id="tabZoneId1"
+               style="z-index: 16; background-color: rgba(255, 255, 255, 0); width: 1585px; height: 275px; top: 37px; left: 8px;">
+            <div class="tab-tiledViewer placeholder tab-widget fade-in" tb-test-id="Sale Map" tabindex="-1"
+                 style="top: 0px; left: 0px; right: 0px; bottom: 0px;">
+              <div class="tab-clip" style="user-select: none; -webkit-tap-highlight-color: transparent;"><h2
+                  class="tab-tvTitle tvimagesNS"
+                  style="user-select: none; -webkit-tap-highlight-color: transparent;"></h2>
+                <div class="tab-tvTLSpacer tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <img></div>
+                <div class="tab-tvTRSpacer tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <img></div>
+                <div class="tab-tvBLSpacer tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <img></div>
+                <div class="tab-tvBRSpacer tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <img></div>
+                <div class="tab-tvYLabel tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvLeftAxis tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvRightAxis tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvXLabel tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvBottomAxis tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvTopAxis tvimagesNS"
+                     style="background-color: rgb(255, 255, 255); display: none; user-select: none; -webkit-tap-highlight-color: transparent;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvView tvimagesNS" id="view17856207369028647194_2111737792312974533" tabindex="0"
+                     role="img" aria-describedby="null instructions17856207369028647194_2111737792312974533"
+                     aria-label="Data Visualization"
+                     style="background-color: rgb(255, 255, 255); left: 0px; top: 0px; width: 1585px; height: 275px;">
+                  <div class="tvScrollContainer tvmodeRectSelect"
+                       style="cursor: default; user-select: none; -webkit-tap-highlight-color: transparent; left: 0px; top: 0px; width: 1585px; height: 275px;">
+                    <div class="tvBackgroundContainer" style="background-color: rgb(255, 255, 255);">
+                      <div>
+                        <div class="tabLeafletMapHolder leaflet-container leaflet-fade-anim"
+                             style="position: relative; width: 1585px; height: 275px; top: 0px; left: 0px; background-color: rgb(255, 255, 255);">
+                          <div class="leaflet-map-pane" style="transform: translate3d(0px, 138px, 0px);">
+                            <div class="leaflet-tile-pane">
+                              <div class="leaflet-layer">
+                                <div class="leaflet-tile-container"></div>
+                                <div class="leaflet-tile-container leaflet-zoom-animated"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/1/2.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 479px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/2/2.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 841px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/1/3.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 479px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/2/3.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 841px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/3/2.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 1203px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/0/2.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 117px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/0/3.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 117px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/3/3.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 1203px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/7/3.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: -245px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/4/2.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 1565px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/7/2.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: -245px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="https://maps.tableausoftware.com:443/tile/d/mode=named|from=tableau5_2_base/mode=named|from=tableau5_2_water/mode=named|from=tableau5_2_coastline/mode=named|from=tableau5_2_admin0_borders/mode=named|opacity=.7|from=tableau5_2_admin1_borders/mode=named|opacity=.7|from=tableau5_2_admin1_labels/mode=named|from=tableau5_2_admin1_borders/mode=named|from=tableau5_2_admin1_labels/ol/3/4/3.png?apikey=tabmapbeta&amp;size=362"
+                                    style="width: 362px; height: 362px; left: 1565px; top: -30px;"></div>
+                              </div>
+                              <div class="leaflet-layer" style="opacity: 0.2;">
+                                <div class="leaflet-tile-container"></div>
+                                <div class="leaflet-tile-container leaflet-zoom-animated"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 479px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 841px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 479px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAGTklEQVR4Xu3UAQ0AMAwCwc2/aJbMxl8dcDTcbTuOAIGkwDUAyd6FJvAFDIBHIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF53AA8vU/S4VRX63AAAAAElFTkSuQmCC"
+                                    style="width: 362px; height: 362px; left: 841px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAGTklEQVR4Xu3UAQ0AMAwCwc2/aJbMxl8dcDTcbTuOAIGkwDUAyd6FJvAFDIBHIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF52AAfADBMICBiBcvugEDIAfIBAWMADh8kUnYAD8AIGwgAEIly86AQPgBwiEBQxAuHzRCRgAP0AgLGAAwuWLTsAA+AECYQEDEC5fdAIGwA8QCAsYgHD5ohMwAH6AQFjAAITLF53AA8vU/S4VRX63AAAAAElFTkSuQmCC"
+                                    style="width: 362px; height: 362px; left: 1203px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 117px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 117px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 1203px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: -245px; top: -30px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 1565px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: -245px; top: -392px;"><img
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    src="data:image/png;base64,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"
+                                    style="width: 362px; height: 362px; left: 1565px; top: -30px;"></div>
+                              </div>
+                            </div>
+                            <div class="leaflet-objects-pane">
+                              <div class="leaflet-shadow-pane"></div>
+                              <div class="leaflet-overlay-pane"></div>
+                              <div class="leaflet-marker-pane"></div>
+                              <div class="leaflet-popup-pane"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tabLeftBarnDoor"
+                             style="position: absolute; top: 0px; bottom: 0px; left: 0px; width: 0px; background-color: rgb(255, 255, 255);"></div>
+                        <div class="tabRightBarnDoor"
+                             style="position: absolute; top: 0px; bottom: 0px; right: 0px; width: 0px; background-color: rgb(255, 255, 255);"></div>
+                      </div>
+                    </div>
+                    <div class="tvimagesContainer" style="width: 1585px; height: 275px;">
+                      <canvas class="tabCanvas tab-widget" width="1585" height="275"
+                              style="width: 1585px; height: 275px;"></canvas>
+                      <canvas class="tabCanvas tab-widget" width="1585" height="275"
+                              style="position: absolute; left: 0px; top: 0px; width: 1585px; height: 275px;"></canvas>
+                    </div>
+                    <div class="tvdrag" style="display: none;">
+                      <div class="tvdrag_image" style="display: none;"></div>
+                      <div class="tvdrag_mask" style="display: none;"></div>
+                    </div>
+                    <div class="tvdrag" style="display: none;"></div>
+                  </div>
+                  <div class="tvViewportBorders">
+                    <div class="tvViewportBorder tvLeftBorder"></div>
+                    <div class="tvViewportBorder tvRightBorder"></div>
+                    <div class="tvViewportBorder tvTopBorder"></div>
+                    <div class="tvViewportBorder tvBottomBorder"></div>
+                  </div>
+                  <div
+                      class="tabMapsSearchContainer tab-widget tabMapsSearchContainerCollapsed tabSuppressVizTooltipsAndOverlays"
+                      style="display: none;">
+                    <div class="tabMapsSearchView tabMapsSearchViewTranslucent tabMapsSearchViewCollapsed">
+                      <div class="tabCompositeSearchWidget tab-widget tabMapsSearchView-searchControlsContainer">
+                        <div></div>
+                        <div class="tabTextInputView tab-widget"><input class="tabTextInputViewInputElement" type="text"
+                                                                        placeholder="Search Map" title=""
+                                                                        autocomplete="off" autocorrect="off"
+                                                                        autocapitalize="off" spellcheck="false"></div>
+                        <button class="tab-button tab-widget tabCompositeSearchWidget-SearchButton" type="button"
+                                style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+                            class="icon"></span><span class="label hide"></span></button>
+                        <button class="tab-button tab-widget tabCompositeSearchWidget-ClearButton" type="button"
+                                style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+                            class="icon"></span><span class="label hide" style="display: none;"></span></button>
+                      </div>
+                    </div>
+                    <div class="tabGotoMyLocationButtonContainer tab-widget tabSuppressVizTooltipsAndOverlays"
+                         title="Go To My Location">
+                      <button class="tab-button tab-widget tabGotoMyLocationButton" type="button"
+                              style="user-select: none; -webkit-tap-highlight-color: transparent;"><span
+                          class="icon"></span><span class="label hide"></span></button>
+                    </div>
+                  </div>
+                  <div class="tab-ReactView">
+                    <div data-reactroot="" class="tab-MapScale" title=""
+                         style="width: 1px; color: rgb(0, 0, 0); border-color: rgb(0, 0, 0); display: none;">
+                      <div class="tab-MapScaleOuterHalo" style="border-color: rgb(0, 0, 0);"></div>
+                      <div class="tab-MapScaleInnerHalo" style="border-color: rgb(0, 0, 0);"></div>
+                      <label class="tab-MapScaleReadout"
+                             style="text-shadow: rgb(0, 0, 0) 1px 1px 0px, rgb(0, 0, 0) 1px -1px 0px, rgb(0, 0, 0) -1px 1px 0px, rgb(0, 0, 0) -1px -1px 0px;"></label>
+                    </div>
+                  </div>
+                  <div class="tabMapAttribution" style="bottom: 1px; left: 1px;">
+                    <div class="tabMapAttributionBackground" style="background-color: rgba(255, 255, 255, 0.8);"></div>
+                    <a class="tabMapAttributionLink" href="http://openstreetmap.org/copyright" target="_blank"
+                       style="color: rgb(127, 127, 127); font-size: 11px;">© OpenStreetMap contributors</a></div>
+                  <div class="FloatingZoomToolbar tab-widget tabSuppressVizTooltipsAndOverlays"
+                       style="top: 51px; display: none;">
+                    <div class="fztButtonContainer">
+                      <div class="tab-widget buttonZoomIn fztButton" title="Zoom In (Double-Click)"
+                           style="user-select: none; -webkit-tap-highlight-color: transparent;"></div>
+                      <div class="tab-widget buttonZoomOut fztButton" title="Zoom Out (Shift+Double-Click)"
+                           style="user-select: none; -webkit-tap-highlight-color: transparent;"></div>
+                      <div class="tab-widget buttonZoomHome fztButton" title="Zoom Home"
+                           style="user-select: none; -webkit-tap-highlight-color: transparent;"></div>
+                      <div class="fztSpacer"></div>
+                      <div class="tab-widget buttonFlyOut fztButton"
+                           style="user-select: none; -webkit-tap-highlight-color: transparent;"></div>
+                    </div>
+                    <div class="fztFlyOutContainer" style="display: none;">
+                      <div class="fztFlyOutButtons"><span class="tab-widget buttonZoomArea fztButton" title="Zoom Area (Cmd+Shift+Drag)
+Press Shift to Lock" style="user-select: none; -webkit-tap-highlight-color: transparent;"></span><span
+                          class="tab-widget buttonPan fztButton" title="Pan (Shift+Drag)
+Press Shift to Lock" style="user-select: none; -webkit-tap-highlight-color: transparent;"></span><span
+                          class="tab-widget buttonRectSelect fztButton selected" title="Rectangle (A)
+Press Shift to Lock" style="user-select: none; -webkit-tap-highlight-color: transparent;"></span><span
+                          class="tab-widget buttonRadialSelect fztButton" title="Radial (S)
+Press Shift to Lock" style="user-select: none; -webkit-tap-highlight-color: transparent;"></span><span
+                          class="tab-widget buttonLassoSelect fztButton" title="Lasso (D)
+Press Shift to Lock" style="user-select: none; -webkit-tap-highlight-color: transparent;"></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-tvCaption tvimagesNS"
+                     style="user-select: none; -webkit-tap-highlight-color: transparent;"></div>
+                <div class="tab-tvScrollX tvimages" style="display: none;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div class="tab-tvScrollY tvimages" style="display: none;">
+                  <div class="tvimagesContainer"></div>
+                </div>
+                <div id="instructions17856207369028647194_2111737792312974533" style="display: none;">Press ESC to clear
+                  any mark selections. Access to the View Data window is not enabled.
+                </div>
+              </div>
+              <div class="tab-widget tab-tiledViewerDrill"><span
+                  class="tab-tvLevelDrillDown tab-levelDrillingIcon tvDrillDown tab-widget"
+                  style="user-select: none; -webkit-tap-highlight-color: transparent; display: none;"></span><span
+                  class="tab-tvLevelDrillUp tab-levelDrillingIcon tvDrillUp tab-widget"
+                  style="user-select: none; -webkit-tap-highlight-color: transparent; display: none;"></span></div>
+              <div class="tab-widget tab-tiledViewerSort">
+                <button class="tab-button tab-widget tab-tvSortIndicator" type="button"
+                        style="user-select: none; -webkit-tap-highlight-color: transparent; border: 0px; position: absolute; padding: 0px; display: none;">
+                  <span class="icon"></span><span class="label hide"></span></button>
+              </div>
+            </div>
+          </div>
+          <div class="tab-zone no-spacing tab-widget tabZone-layout-basic fade-bg" id="tabZoneId2"
+               style="z-index: 11; background-color: rgba(255, 255, 255, 0); width: 1763px; height: 304px; top: 8px; left: 8px;"></div>
+          <div class="tab-zone no-spacing tab-widget wcLayoutContainer tabZone-layout-flow fade-bg" id="tabZoneId12"
+               style="z-index: 14; border-width: 1px; border-color: rgb(172, 168, 153); border-style: none; width: 1763px; height: 275px; top: 37px; left: 8px;"></div>
+          <div class="tab-zone no-spacing tab-widget tabSuppressVizTooltipsAndOverlays tabZone-filter fade-bg"
+               id="tabZoneId17"
+               style="z-index: 18; border-width: 2px; border-color: rgb(247, 247, 247); border-style: solid; background-color: rgb(247, 247, 247); width: 162px; height: 53px; top: 39px; left: 1603px;">
+            <div class="tab-quick-filter tab-widget tabBordered">
+              <div class="FilterPanel" dojoattachpoint="containerNode" dojoattachevent="onmousedown:onMouseDown"
+                   id="tableau_base_widget_FilterPanel_0" widgetid="tableau_base_widget_FilterPanel_0"
+                   style="left: 0px; top: 0px; width: 162px; height: 53px;">
+                <div class="CategoricalFilter CFAll CFHorizontal" role="application"
+                     id="tableau_base_widget_LegacyCategoricalQuickFilter_0"
+                     widgetid="tableau_base_widget_LegacyCategoricalQuickFilter_0" tabindex="-1"
+                     style="left: 0px; top: 0px; width: 162px; height: 53px;">
+                  <div class="CategoricalFilterBox" dojoattachpoint="domBox">
+                    <div class="TitleAndControls CF2Button HideControls" dojoattachpoint="domControls">
+                      <h3 class="FilterTitle" dojoattachpoint="domTitleBar" title="Region" id="tab-ui-id-1"
+                          style="height: 20px; width: auto; float: none;"><span
+                          style="white-space:pre;tab-size:10;-moz-tab-size:10"><div
+                          style="text-align: left; font-family: &quot;Tableau Medium&quot;, Tableau, Arial, sans-serif; font-size: 12px; line-height: 16px; color: rgb(49, 49, 49); font-weight: normal; font-style: normal; text-decoration: none; text-overflow: ellipsis; overflow: hidden;"><span
+                          style="font-family: &quot;Tableau Medium&quot;, Tableau, Arial, sans-serif; font-size: 12px; line-height: 16px; color: rgb(49, 49, 49); font-weight: normal; font-style: normal; text-decoration: none;">Region</span></div></span>
+                      </h3>
+                      <span
+                          class="dijit dijitReset dijitLeft dijitInline CFButton CFResetButton CFButtonR2 dijitButton dijitButtonDisabled dijitDisabled"
+                          dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                          widgetid="dijit_form_Button_2" style="background-color: rgb(247, 247, 247);"><span
+                          class="dijitReset dijitRight dijitInline"><span
+                          class="dijitReset dijitInline dijitButtonNode tab-quickFilterButtonDisabled"><button
+                          class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                          name="" type="button" wairole="button" waistate="labelledby-dijit_form_Button_2_label"
+                          role="button" aria-labelledby="dijit_form_Button_2_label" title="Showing all values"
+                          id="dijit_form_Button_2" disabled="" aria-disabled="true"><span
+                          class="dijitReset dijitInline wcIconNonfiltered" dojoattachpoint="iconNode"><span
+                          class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                          class="dijitReset dijitInline dijitButtonText dijitDisplayNone" id="dijit_form_Button_2_label"
+                          dojoattachpoint="containerNode">Showing all values</span></button></span></span></span><span
+                        class="dijit dijitReset dijitLeft dijitInline CFButton CFSearchButton dijitButton CFButtonHide"
+                        dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                        widgetid="dijit_form_Button_3" style="background-color: rgb(247, 247, 247);"><span
+                        class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+                        class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                        name="" type="button" wairole="button" waistate="labelledby-dijit_form_Button_3_label"
+                        role="button" aria-labelledby="dijit_form_Button_3_label" title="Search"
+                        id="dijit_form_Button_3" tabindex="0"><span class="dijitReset dijitInline wcIconSearch"
+                                                                    dojoattachpoint="iconNode"><span
+                        class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                        class="dijitReset dijitInline dijitButtonText dijitDisplayNone" id="dijit_form_Button_3_label"
+                        dojoattachpoint="containerNode">Search</span></button></span></span></span><span
+                        class="dijit dijitReset dijitLeft dijitInline CFButton CFDomainButton dijitButton CFButtonHide"
+                        dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                        widgetid="dijit_form_Button_4" style="background-color: rgb(247, 247, 247);"><span
+                        class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+                        class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                        name="" type="button" wairole="button" waistate="labelledby-dijit_form_Button_4_label"
+                        role="button" aria-labelledby="dijit_form_Button_4_label" title="Show Fewer Values"
+                        id="dijit_form_Button_4" tabindex="0"><span class="dijitReset dijitInline wcIconDomainAll"
+                                                                    dojoattachpoint="iconNode"><span
+                        class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                        class="dijitReset dijitInline dijitButtonText dijitDisplayNone" id="dijit_form_Button_4_label"
+                        dojoattachpoint="containerNode">Show Fewer Values</span></button></span></span></span><span
+                        class="dijit dijitReset dijitLeft dijitInline CFButton CFMenuButton dijitButton CFButtonR1"
+                        dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                        widgetid="dijit_form_Button_5" style="background-color: rgb(247, 247, 247);"><span
+                        class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+                        class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                        name="type" type="button" wairole="button" waistate="labelledby-dijit_form_Button_5_label"
+                        role="button" aria-labelledby="dijit_form_Button_5_label" id="dijit_form_Button_5" tabindex="0"><span
+                        class="dijitReset dijitInline wcIconContextMenu" dojoattachpoint="iconNode"><span
+                        class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                        class="dijitReset dijitInline dijitButtonText" id="dijit_form_Button_5_label"
+                        dojoattachpoint="containerNode">Show Quick Filter Context Menu</span></button></span></span></span>
+                    </div>
+                    <div dojoattachpoint="searchDiv"></div>
+                    <div class="CFContent" dojoattachpoint="domContent"
+                         style="cursor: default; float: none; width: 156px; height: 32px;"><span
+                        class="tabComboBox tab-ctrl-formatted-widget tab-ctrl-formatted-darker-border-hover tabComboStdTheme tabComboBoxNoIcon tiledContent"><div
+                        class="tabComboBoxNameContainer tab-ctrl-formatted-fixedsize"><span class="tabComboBoxName">(All)</span></div><div
+                        class="tabComboBoxButtonHolder"><span class="tabComboBoxButton"><svg focusable="false" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px" height="12px" viewBox="0 0 12 12" style="enable-background:new 0 0 12 12;" xml:space="preserve"><path style="fill:rgb(49,49,49);" d="M4.9,6.9L2.1,3.3C2,3.2,2.1,3,2.2,3h5.6C8,3,8.1,3.2,8,3.3L5.2,6.9C5.1,7,4.9,7,4.9,6.9z"></path></svg></span></div></span>
+                    </div>
+                    <div class="CFHorizScroll" dojoattachpoint="domHorizScroll" dojoattachevent="onscroll:doscrollHoriz"
+                         style="display: none;">
+                      <div dojoattachpoint="domHorizScrollContent"></div>
+                    </div>
+                    <div class="ConditionalsWidget tab-ctrl-formatted-text"
+                         id="tableau_base_widget_ConditionalsWidget_0"
+                         widgetid="tableau_base_widget_ConditionalsWidget_0">
+                      <div class="Conditional" dojoattachpoint="domCondition" style="display: none;"><span
+                          dojoattachpoint="domConditionTitle" class="ConditionalTitle">Condition</span><br><span
+                          dojoattachpoint="domConditionText"></span></div>
+                      <div class="Conditional" dojoattachpoint="domLimit" style="display: none;"><span
+                          dojoattachpoint="domLimitTitle" class="ConditionalTitle">Limit</span><br><span
+                          dojoattachpoint="domLimitText"></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-zone no-spacing tab-widget wcLayoutContainer tabZone-layout-flow fade-bg" id="tabZoneId18"
+               style="z-index: 17; border-width: 1px; border-color: rgb(215, 215, 215); border-style: solid; background-color: rgb(247, 247, 247); width: 168px; height: 203px; top: 37px; left: 1601px;"></div>
+          <div class="tab-zone no-spacing tab-widget tabSuppressVizTooltipsAndOverlays tabZone-filter fade-bg"
+               id="tabZoneId24"
+               style="z-index: 19; border-width: 2px; border-color: rgb(247, 247, 247); border-style: solid; background-color: rgb(247, 247, 247); width: 162px; height: 67px; top: 104px; left: 1603px;">
+            <div class="tab-quick-filter tab-widget tabBordered">
+              <div class="FilterPanel" dojoattachpoint="containerNode" dojoattachevent="onmousedown:onMouseDown"
+                   id="tableau_base_widget_FilterPanel_1" widgetid="tableau_base_widget_FilterPanel_1"
+                   style="left: 0px; top: 0px; width: 162px; height: 67px;">
+                <div class="QuantitativeFilter" id="tableau_base_widget_LegacyQuantitativeQuickFilter_0"
+                     widgetid="tableau_base_widget_LegacyQuantitativeQuickFilter_0"
+                     style="left: 0px; top: 0px; width: 162px; height: 67px;">
+                  <div class="QuantitativeFilterBox" dojoattachpoint="domBox">
+                    <div class="TitleAndControls QF1Button HideControls" dojoattachpoint="domControls">
+                      <h3 class="QFTitle" dojoattachpoint="domTitleBar" title="Profit Ratio"
+                          style="height: 20px; width: auto;"><span style="white-space:pre;tab-size:10;-moz-tab-size:10"><div
+                          style="text-align: left; font-family: &quot;Tableau Medium&quot;, Tableau, Arial, sans-serif; font-size: 12px; line-height: 16px; color: rgb(49, 49, 49); font-weight: normal; font-style: normal; text-decoration: none; text-overflow: ellipsis; overflow: hidden;"><span
+                          style="font-family: &quot;Tableau Medium&quot;, Tableau, Arial, sans-serif; font-size: 12px; line-height: 16px; color: rgb(49, 49, 49); font-weight: normal; font-style: normal; text-decoration: none;">Profit Ratio</span></div></span>
+                      </h3>
+                      <span class="dijit dijitReset dijitLeft dijitInline QFButton QFResetButton QFButtonR1 dijitButton"
+                            dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                            widgetid="dijit_form_Button_6" style="background-color: rgb(247, 247, 247);"><span
+                          class="dijitReset dijitRight dijitInline"><span
+                          class="dijitReset dijitInline dijitButtonNode"><button
+                          class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                          name="" type="button" wairole="button" waistate="labelledby-dijit_form_Button_6_label"
+                          role="button" aria-labelledby="dijit_form_Button_6_label" title="Click to show all values"
+                          id="dijit_form_Button_6" tabindex="0" aria-disabled="false"><span
+                          class="dijitReset dijitInline wcIconFiltered" dojoattachpoint="iconNode"><span
+                          class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                          class="dijitReset dijitInline dijitButtonText dijitDisplayNone" id="dijit_form_Button_6_label"
+                          dojoattachpoint="containerNode">Click to show all values</span></button></span></span></span><span
+                        class="dijit dijitReset dijitLeft dijitInline QFButton QFDomainButton dijitButton QFButtonHide"
+                        dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                        widgetid="dijit_form_Button_7" style="background-color: rgb(247, 247, 247);"><span
+                        class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+                        class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                        name="" type="button" wairole="button" waistate="labelledby-dijit_form_Button_7_label"
+                        role="button" aria-labelledby="dijit_form_Button_7_label" title="Show Smaller Range"
+                        id="dijit_form_Button_7" tabindex="0"><span class="dijitReset dijitInline wcIconDomainAll"
+                                                                    dojoattachpoint="iconNode"><span
+                        class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                        class="dijitReset dijitInline dijitButtonText dijitDisplayNone" id="dijit_form_Button_7_label"
+                        dojoattachpoint="containerNode">Show Smaller Range</span></button></span></span></span><span
+                        class="dijit dijitReset dijitLeft dijitInline QFButton QFMenuButton dijitButton QFButtonHide"
+                        dojoattachevent="ondijitclick:_onButtonClick,onmouseenter:_onMouse,onmouseleave:_onMouse,onmousedown:_onMouse"
+                        widgetid="dijit_form_Button_8" style="background-color: rgb(247, 247, 247);"><span
+                        class="dijitReset dijitRight dijitInline"><span class="dijitReset dijitInline dijitButtonNode"><button
+                        class="dijitReset dijitStretch dijitButtonContents" dojoattachpoint="titleNode,focusNode"
+                        name="type" type="button" wairole="button" waistate="labelledby-dijit_form_Button_8_label"
+                        role="button" aria-labelledby="dijit_form_Button_8_label" id="dijit_form_Button_8" tabindex="0"><span
+                        class="dijitReset dijitInline wcIconContextMenu" dojoattachpoint="iconNode"><span
+                        class="dijitReset dijitToggleButtonIconChar">✓</span></span><span
+                        class="dijitReset dijitInline dijitButtonText" id="dijit_form_Button_8_label"
+                        dojoattachpoint="containerNode"></span></button></span></span></span></div>
+                    <div class="QFContent" dojoattachpoint="domContent"
+                         style="top: 21px; width: 162px; height: 46px; visibility: visible;">
+                      <div class="QFReadout QFLowerBound tab-ctrl-formatted-border-hover"
+                           dojoattachevent="onclick:showLowerInput" dojoattachpoint="domLowerBound"
+                           style="width: 73px;">
+                        <div class="readoutText tab-ctrl-formatted-fixedsize" dojoattachpoint="domLowerText">-270,0%
+                        </div>
+                        <input type="text" dojoattachpoint="domLowerInput" style="display: none; width: 73px;"></div>
+                      <div class="QFReadout QFUpperBound tab-ctrl-formatted-border-hover"
+                           dojoattachevent="onclick:showUpperInput" dojoattachpoint="domUpperBound"
+                           style="width: 73px;">
+                        <div class="readoutText tab-ctrl-formatted-fixedsize" dojoattachpoint="domUpperText">50,0%</div>
+                        <input type="text" dojoattachpoint="domUpperInput" style="display: none; width: 73px;"></div>
+                      <div dojoattachpoint="domBar" class="QFSlider QFBar" style="width: 138px; top: 29px; left: 12px;">
+                        <div dojoattachpoint="domRange" class="QFRange" dojoattachevent="onmousedown:startRangeCapture"
+                             style="left: 0px; width: 138px;">
+                          <div dojoattachpoint="domHighlight" class="QFRangeHighlight"
+                               style="visibility: visible; left: 34px; width: 104px;"></div>
+                        </div>
+                      </div>
+                      <span dojoattachpoint="domLowerImg" class="QFSlider QFImg QFFilterLeft"
+                            dojoattachevent="onmousedown:startLowerCapture"
+                            style="top: 23px; visibility: visible; left: 3px;"></span><span
+                        dojoattachpoint="domUpperImg" class="QFSlider QFImg QFFilterRight"
+                        dojoattachevent="onmousedown:startUpperCapture"
+                        style="top: 23px; visibility: visible; left: 150px;"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-zone no-spacing tab-widget wcLayoutContainer tabZone-layout-flow fade-bg" id="tabZoneId26"
+               style="z-index: 15; border-width: 1px; border-color: rgb(172, 168, 153); border-style: none; width: 1763px; height: 275px; top: 37px; left: 8px;"></div>
+          <div class="tab-zone no-spacing tab-widget tabSuppressVizTooltipsAndOverlays tabZone-color fade-bg"
+               id="tabZoneId27"
+               style="z-index: 20; border-width: 1px; border-color: rgb(172, 168, 153); border-style: none; width: 166px; height: 57px; top: 183px; left: 1603px;">
+            <div class="tabLegendPanel tab-widget"
+                 style="position: relative; overflow: hidden; width: 166px; height: 57px;"
+                 id="tableau_qcolor_legend_Sale%20Map">
+              <div class="tabLegendTitleAndControls">
+                <h3 class="tabLegendTitle" style="position: absolute; height: 17px; width: 166px;"><span
+                    style="white-space:pre;tab-size:10;-moz-tab-size:10"><div
+                    style="text-align: left; font-family: &quot;Tableau Book&quot;, Tableau, Arial, sans-serif; font-size: 12px; color: rgba(0, 0, 0, 0.8); font-weight: normal; font-style: normal; text-decoration: none; text-overflow: ellipsis; overflow: hidden;"><span
+                    style="font-family: &quot;Tableau Book&quot;, Tableau, Arial, sans-serif; font-size: 12px; color: rgba(0, 0, 0, 0.8); font-weight: normal; font-style: normal; text-decoration: none;">Profit Ratio</span></div></span>
+                </h3>
+                <div class="tabLegendTitleControls">
+                  <div class="tabLegendContextMenuButton" style="display:none;">
+                    <div class="tabLegendContextMenuButtonIcon"></div>
+                  </div>
+                </div>
+              </div>
+              <canvas class="tabLegendRamp"
+                      style="position: absolute; left: 47px; top: 23px; width: 73px; height: 15px; border-width: 1px; border-color: rgb(172, 168, 153); border-style: solid;"
+                      width="73" height="15"></canvas>
+              <div class="tabLegendCenterMark"
+                   style="position: absolute; visibility: visible; left: 84px; top: 37px; width: 1px; height: 4px; background-color: black;"></div>
+              <div class="tabLegendMinLabel"
+                   style="position: absolute; left: 4px; top: 23px; width: 40px; height: 16px; line-height: 16px; text-align: left; font-size: 9pt; color: rgb(51, 51, 51); font-family: &quot;Tableau Book&quot;, Arial, sans-serif; white-space: nowrap;">
+                -50,0%
+              </div>
+              <div class="tabLegendMaxLabel"
+                   style="position: absolute; visibility: visible; left: 125px; top: 23px; width: 36px; height: 16px; line-height: 16px; text-align: right; font-size: 9pt; color: rgb(51, 51, 51); font-family: &quot;Tableau Book&quot;, Arial, sans-serif; white-space: nowrap;">
+                50,0%
+              </div>
+            </div>
+          </div>
+          <div class="tab-zone no-spacing tab-widget wcLayoutContainer tabZone-layout-flow fade-bg" id="tabZoneId36"
+               style="z-index: 12; border-width: 1px; border-color: rgb(172, 168, 153); border-style: none; width: 1763px; height: 304px; top: 8px; left: 8px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="display: none;">
+  <textarea id="tsConfigContainer">{"showTabsWorkbook":true,"sheetId":"Overview","showParams":"{\"revertType\":null,\"refresh\":false,\"checkpoint\":false,\"sheetName\":\"\",\"unknownParams\":\"\",\"layoutId\":\"\"}","stickySessionKey":"{\"featureFlags\":\"{}\",\"isAuthoring\":false,\"isOfflineMode\":false,\"lastUpdatedAt\":1515583224877,\"wgSession\":\"OuG9pht4TUGPDgjKo32lrA\",\"workbookId\":16}","filterTileSize":200,"locale":"ru_RU","workbookLocale":null,"language":"en","version":"10.3","lyteboxedVizWidth":1000,"facebookDescription":"Follow the link to view the data","bootstrapOnMouseover":false,"bootstrapWhenNotified":true,"serverSmallLogo":"/images/tableau-icon.gif","forceToolbarTop":true,"sessionIdHash":"yBi29XwP2zBwM1tkOM8ksiHrgI5Kg+5o6l6kf46JQuE=","toolbarContainerVis":true,"toolbarvis":true,"toolbarvisDefault":true,"linktarget":null,"watermarkdisplay":false,"watermarklink":"http://www.tableau.com/products","embeddedTitle":null,"embedded":true,"staticImage":"","baseViewThumbLink":"https://ecsb00100f14.epam.com/thumb/views/Overview2_0/Overview","isPublic":false,"gbrand":false,"previewMode":false,"serverName":"Tableau Server","showTabs":true,"showTabsDefault":true,"repositoryUrl":"Overview2_0/Overview","guid":"","primaryContentUrl":null,"shareDescription":"Overview2","showLytebox":null,"showShareOptions":true,"showViewCount":false,"viewCountThreshold":1,"workbookName":"Overview2","syncSession":null,"animateTransition":true,"reloadOnCustomViewSave":true,"highDpi":true,"pixelRatio":null,"isBootstrapFromAutoSave":false,"schemeWhitelist":"","useOfflineHelp":false,"showVizHome":false,"formatDataValueLocally":false,"deviceTypeOverride":"","metricsReportingEnabled":true,"metricsServerHostname":"/inst","metricsFilter":"","clientErrorReportingLevel":"debug","clientErrorReportingMaxRequestSizeBytes":4096,"forceHttpsForPublicEmbed":false,"openAuthoringInTopWindow":true,"browserBackButtonUndo":true,"commentingEnabled":true,"features":{"VizInTooltips":false,"SelfServiceSchedules":false,"TouchSmoothTooltips":false,"VizParam":false,"DatabasePivot":false,"Runtime":true,"ValidateOldFormatsOnSave":false,"PasswordReset":false,"ParallelFederatedEvaluator":true,"SkipConnectionsDuringLoadDesktop":true,"DataServerUI":false,"AlertSidePanel":false,"ExportDataToCSVWithProgress":true,"OpenID":true,"SavingAnalyticObjects":false,"CloudFileSemiStructSupport":true,"WorkbookSanitizer":false,"BinDialogMttw":true,"OptimalRefresh":true,"SubscribeOthers":true,"IframeSizedToWindow":false,"LeftPaneIndependentScroll":true,"AsyncPublishWorkbook":true,"DatasourceCertification":false,"ErrorHelpLinks":true,"HyperFileInserter":false,"LiveQueryAgentPublishing":false,"FullDashboardImageExport":false,"QueryPipeline_AVsInMemoryCache":true,"FilterCalcEditWidget":true,"RemoteQueryTopN":false,"VizLegendPerMeasure":true,"StorytellingUberNavWidget":true,"Hyper_FedEngine":false,"DisableGLForMultiPolygon":true,"SortTagCleanup":false,"StorytellingMoveToTheWeb":true,"QueryPipeline_TempTableMaterialization":true,"OfflineInteraction":true,"ReferenceLineDropOnShelves":false,"QueryPipeline_NotNullOptimizations":false,"RichTextEditingTextZone":false,"EditPublishedDataSource":false,"WebAuthoringMenuBar":true,"TableCalcsPartitionCentric":false,"AutomaticDrill":false,"StorytellingNumberedNavigator":true,"Hyper_NormalizedExtracts":false,"WebAuthoringPublishDatasource":true,"GroupDialogMttw":false,"AlertEditing":true,"ForecastDiagnose":false,"QueryPipeline_HyperReadConstraints":true,"DataTabUnification":false,"MobileQFZoneInteractiveRedesign":false,"GoogleSheets":true,"VizCatQF":false,"ADM":true,"WorkbookVersionHistoryViewDownloadDelete":true,"PerformanceRecorderWorkbookUpdates":true,"SelectionRelaxationCubes":true,"NewTextScan":false,"CustomFormatterShortTimeFromSystem":false,"GuestAccountPerSite":true,"OAuthWDCServerRefresh":true,"InteractiveValidation":false,"DrillUpWeb":true,"AsyncProjectGeometry":true,"AlertOnThresholdCondition":true,"AllowReevaluationOfAlertsWithStaleData":false,"WDC_ProgressPolling":true,"HyperLibpqNaiveReader":false,"RichTextEditingDashboardTitle":false,"HighContrastColorsEnabled":false,"RecommendationsDatasourceRelevanceApiEnabled":false,"LevelDrillUpDown":false,"SharedMetadataCache":true,"DatabaseUnion2":true,"ProtectVizPortalSessionIds":true,"RenderAndCheckFontLoader":true,"TableCalcOrderingDensification":false,"VizFilterDialogDesktopRefactor":false,"ConnectV2ErrorHandling":true,"RecommendationsAlgorithmSwitcher":false,"ImmutableDOMLogging":false,"WDC_GenericAuth":true,"RuntimeAxisEncodings":false,"TopologyValidation":true,"DashWebAuthThumbnail":false,"APIBasedEmbedCode":false,"GoogleSheetsUnionPatternBased":true,"Pdf":true,"RuntimeLegacyOff":true,"PresModelLogs":false,"TAA_FinishedDialogs":true,"ShowDatasourceFields":false,"UnionFederated":false,"ServerSubscriptionLicensing":false,"CustomFormatterForceVariant":false,"DesktopCrashUploadingV2":true,"InitialSQLParameters":true,"VerifyWorkbookExtracts":false,"EditAxisDialog":false,"WebAuthoringResizeHeaders":false,"RichTextEditing":false,"MariaDB":false,"XercesParserFatalErrors":true,"SecureSecretStorageTSM":false,"OAuthImprovements":true,"WorkgroupSSLClientCertificates":true,"WebAuthoringChangeDataType":false,"ReferenceLineDistribution":true,"FederationCoProcessor":false,"UseFederationEngineCapabilities":false,"ModelessCustomSQL":false,"XercesParserValidateTDS":true,"VizLineInterpolation":false,"MapScaling":false,"DynamicConnectionList":false,"DynamicFitToStory":false,"DataGridRemoteQuery":true,"StorytellingUberNavWidgetWeb":true,"RecommendationsTableRelevanceApiEnabled":true,"UserTimeZone":false,"LocalJSONUnion":true,"TestingFeedbackBuilds":false,"SeamlessTitlesAndCaptionsWebSP1":true,"SelectionRelaxationDefaultOn":false,"RuntimeGridLines":false,"TAA_PageCardRefactor":false,"RemoteQueryAll":false,"Hyper_ColumnDynamicTables":false,"IntRealDualAxisSync":false,"TypeInPillsExtraShelves":false,"StorytellingMoveToTheWebV2":false,"TableauFont":true,"SalesforceOAuth":true,"ExternalPGSql":false,"AxisDrillUp":true,"WorkgroupChangeSite":true,"SingleTableUnion":true,"FormatWorkbookLines":true,"EnhancedMetadata":false,"QueryPipeline_LogicalQueryOptimizer":true,"DatasourceVersionHistoryViewDownloadDelete":true,"AsyncJsModuleLoad":true,"ProgressiveDashboardLoad":true,"QueryPipeline_BooleanIfNull":false,"RuntimeBinaryDatastore":false,"ReferenceLineNonModal":true,"SearchIndexSync":true,"JoinOnCalculations":true,"OnlineAnalyticsPipelineEnabled":false,"SubscribeOnExtractRefresh":false,"VizXDSFTargetSecondaries":false,"HotTopologyDemo":false,"PublishCanDowngrade":false,"DataSyncQuietLaunch":true,"ExposeFederatedDialectsInDataServer":true,"SkipConnectionsDuringLoad":true,"DataToTheWeb":false,"StorytellingDottedNavigator":true,"TrendLineDialogMttw":false,"ExternalWorkbookAttributesCache":true,"DataToTheWebEdits":false,"TAA_WorkInProgress":false,"AliasDialogMttw":false,"DatabaseCoalesce":true,"WebAuthoringContinuousColorPicker":true,"DataEngineQueryband":true,"PublicPublishDialogUnificationDesign":true,"TextCleaning":true,"WorkgroupHostedServerLogin":true,"DisableDoubleClick":true,"ValidateCsvFile":true,"InterceptFirstTrendLines":false,"SelectionRelaxation":true,"ThemedColorPalettes":true,"CovarianceCorrelation":true,"TableCalcDensificationControl":false,"ServerSmoothTooltips":true,"DeviceSpecificDashboardWebAuth":true,"Hyper_QueryExtracts":false,"ImprovedSamples":true,"RuntimeWebRunningTransforms":false,"AlertOnMoreChartTypes":true,"XercesParser":true,"GlobalStringFactory":true,"LiveQueryInSyncV1beta":true,"OAuthWDCQuickBooksServerRefresh":true,"ParameterizedConfigOverrides":false,"WebAuthoringSheetTabColor":false,"UnionPatternBased":true,"MongoDBConnector":true,"OnPremiseMonitoring":false,"WindowCovarianceCorrelation":true,"QueryPipeline_DisjunctiveJoins":true,"SingleTextPane":true,"FederatedPublishedDatasources":false,"VizState":false,"TAA_PerspectiveRefactor":false,"CloudFileTextSupport":true,"CleanValues":false,"EnhancedMetadataSerialized":false,"AnalyticsObjectsEditors":false,"RemodelTheModel_DependencyBasedEditing":false,"StoryPointCache":false,"RuntimeReferenceLines":false,"DialectRegistration":false,"AccessibilityTypeInFilters":false,"XercesParserValidateTBM":true,"AllDatabaseUnion":false,"NewFontPicker":false,"WebAuthoringOnlineTelemetry":false,"NewSpawnProcess":false,"DomCache":true,"FontArchitectureRefactor":true,"VizXDSFShared":true,"WDC_StandardConnections":true,"DataEngineQueryFusion":false,"NewGeocoding":false,"PostFederationLocalCastPlanning":false,"WebContinuousColorAdvanced":false,"QueryPipeline_CommonSubexpressionElimination":false,"AlertOnStackedCharts":true,"WebQuickNumberFormattingPills":true,"AddSupportUser":false,"QueryPipeline_LogicalOpToDataServer":false,"Generalization":true,"XercesParserValidateTMS":true,"AccessibilityDropdownFilters":false,"Hyper_NativeExtracts":false,"QueryPipeline_ExclRestrict":true,"HyperStreamInserter":false,"VizSpecialValues":false,"DummyFeature1":false,"DummyFeature4":false,"AlertWhenDataPresent":true,"DummyFeature2":false,"AsyncTaskMigrationPhase2":true,"HiveNewAuthDialog":true,"DashMttwSP1":true,"TabadminService":false,"SyncingCaches":false,"ExcelStreaming":false,"RuntimeWebRenderFromFinalDatastore":false,"HighDPIIcons":false,"OnlineEasySharingPhase1":true,"HyperLibpqBinaryInserter":true,"DatabaseUnion":true,"VizLegendHover":false,"OAuthProxy":true,"SeamlessTitlesAndCaptionsSP2":false,"WebSanitizeHtmlLibrary":true,"WorkbookVersioning":true,"ServerCrashUploading":true,"PageCardImprovements":false,"Shaping":false,"VizSIRemoteSelectionTooltip":false,"DSDWebAuth":false,"SelectionRelaxationContinuousDimensions":false,"AQLDataPipeline2":false,"ConcurrentFileMDReading":true,"RenderThresholdUpdate":true,"UseWorkbookValidateUrlV2":true,"DummyFeature3_Enabled":true,"Autosave":true,"HideAutomaticDrillUI":false,"QAxisSelect":false,"AlternativeFedEngine":false,"WebAuthoringInlineRenameTab":false,"DesktopReporting":false,"TAA_ShowMembersDialog":true,"VizDateFilterPresetMaxValue":true,"WDC_MarketoConnector":true,"DescribeStatistics":false,"ATR":false,"UserImages":true,"ClientCertificateLogin":true,"ExtractDataPreview":true,"WebAuthoringToolbarSort":true,"VizDashboardInTooltips":false,"VizXDSFGlobal":true,"ConnectV2Licensing":true,"ViewingToolbarModalDialog":false,"WhitelistErrorMessageToken":false,"WorkbookVersionHistoryContentVersionLimit":true,"ControllerSSL":false,"NewGeocoding_SupportNullValues":false,"AlphabeticalSchemaSort":false,"EnableRollingWindowExtracts":false,"QueryPipeline_MinNullCheck":false,"VizQuickFilterDesktopRefactor":false,"StatsOutliers":false,"SharedUnificationWidgets":false,"ImmutableDOMAssert":false,"PublicInBrowserLogin":true,"HyperDataPrep":false,"IntuitiveSorting":false,"SaveLoadDefaultFormats":false,"WorkgroupChangeServer":true,"BigQueryCheckBox":true,"StoryPointPrefetch":true,"WDC_AnaplanConnector":true,"JoinOnDerivedColumns":true,"LowDiskSpace":true,"ParseDate":true,"ForceStandAloneBrowserForPreviewIfAvailable":false,"OEmbedSupport":false,"AutosaveSP2":true,"ConfigurableConnections":true,"AggregatePushdown":true,"SingleOHeader":true,"HyperLibpqProtocolVersions":false,"WebErrorsOnlineTelemetry":false,"DistributeEvenly":true,"SapBWSSO":true,"QueryPipeline_DomainRewrites":false,"SelectHighlighted":false,"SalesforceVersion37":true,"LineString":false,"TelemetryServerDeploy":false,"LogicalQueryCache":false,"MapScaleBar":true,"RemoteDomainConnections":true,"LiveQueryInSync":false,"VizXDSGroup":false,"SemiStructMapPivot":false,"NewDefaultTheme":true,"MapRenderClipping":true,"SetCspHeaders":false,"PersistShadowExtracts":true,"FormatDisableSearchCache":false,"TAA_SortDialogRefactor":false,"NewGeocodingStorage":false,"DataGridDragAndDrop":false,"MemoryConservativeString":true,"ShowBuildInfoInMainWindowTitle":false,"DensificationForRendering":false,"DataIntegrationForTDE":true,"NewDataGridToolbar":false,"HyperLibpqChunkReader":true,"RecommendationsTrainer":true,"WDC_QuickBooksConnector":true,"WebAuthoringResizeAxes":true,"WDC_EloquaConnector":true,"WebCloseDataSourceErrorDialog":true,"AlertSaveVizState":false,"ServerConfigurableConnections":true,"ProtectTrustedTickets":true,"DataIntegrationCapabilities":true,"DashWebAuthSP4":true,"ServerExternalBootstrapResponseCache":true,"PublicServerOAuthClient":true,"RuntimeDisabledValidation":false,"DiskIOMonitor":true,"ServerTelemetryLogging":true,"PseudoLoc":false,"RecommendationsPane":false,"FormatMultiScopedLinePicker":false,"RuntimeHandleMoreVizTypes":true,"SemiStructMetadataDiscovery":true,"QueryPipeline_BooleanConditionals":true,"LiveQueryInSyncV1":true,"SimpleObjectStorage":true,"GeneralizationUseCoarse":false,"NewDashboardSpacing":false,"PublishFederatedPublishedDatasources":false,"SecureSecretStorage":true,"OnPremSiteSAML":true,"RememberConnectionSettings":true,"DashSpacingWebAuth":false,"Hyper_SimpleQueryProtocol":true,"QueryPipeline_SimpleSetsCompilation":false,"SvgInVizClient":true,"TNetworkForWebViews":false,"QueryPipeline_BooleanSimplification":true,"RemodelTheModel_SelfTest":false,"DatasourceVersioning":false,"CheckForProductUpdates":true,"FormatWorkbookWebAll":false,"WebSafeEdit":false,"TCTotalFilterSwitch":true,"UserGeometry":true,"RichTextEditingPlatformV1":false,"XercesParserValidateTWB":true,"SendTableChangeTelemetry":false,"CommentingPane":false,"HyperLibpqConnector":true,"GeoJSONSupport":true,"CustomAppBannerOnVizPage":true,"RecommendationsTelemetryApiEnabled":false,"EnableHighDpiScaling":false,"HackWrangler":false,"NewWorkbookTheme":true,"VerifyDatabaseRestore":true,"CacheWarmup":true,"CloudFileExcelSupport":true,"AsyncLoadDojo":false,"TableauFontWeb":true,"MinorStoryImprovements":true,"CommentingOnSingleVizWithContext":false,"WebCreateConnection":false,"GeneralizationUseVW":false,"WebDragToShowMe":true,"VersionInUpgradeWarningDialog":true,"WorkgroupConnectedDesktop":true,"HyperNamedConnector":false,"CertificateRevocationCheck":true,"NewDashboardMarginsNotPartOfZone":false,"QueryPipeline_AccelerationViewQueries":true,"MemoryConservativeAxisDescriptor":true,"DataEngineRightFullJoin":true,"InMemFederatingConnection":false,"LatestDateDatasourceFilter":true,"WDC_JoinFiltering":true,"AthenaConnector":true,"QueryPipeline_RewriteBooleanCase":true,"MapOptionsDialogMttW":true,"GenericOdbcOnMac":false,"SpacesNestedContent":false,"RecommendationsServerDeploy":true,"DrillConnector":true,"HideMarkLabelsAsLocalAction":false,"IntegratedAuthDialog":true,"RecommendPopularTables":true,"ReferenceLineDragDrop":true,"ContentVersionSosStorage":true,"HotTopologyServiceRegistry":false,"ProtocolSiteSharding":false,"DataSyncLaunchDuringPublish":true,"VizToolbarFullscreenButton":true,"TableCalcsRunningOrderAnnotation":true,"MultiplePivot":false,"DataSync":false,"ActivityAndResourceMonitoring":false,"DataIntegrationForSplunk":false,"ShowBarValueRelativeToAlertThreshold":false},"offlineBootstrapResponse":null,"clientCheckBugText":null,"clientCheckBugUrl":null,"clientOpenBugText":null,"clientOpenBugUrl":null,"showAppBanner":false,"facebookAppID":"242391562456920","allow_select":true,"allow_filter":true,"allow_sheetlink":true,"allow_highlight":true,"allow_tooltip":true,"allow_view_underlying":true,"allow_summary":true,"allow_custom_views":true,"allow_custom_view_default":true,"allow_custom_view_share":true,"allow_custom_view_save":true,"allow_authoring":false,"allow_data_alert":true,"allow_save":false,"allow_save_as":false,"allow_save_data_source":false,"allow_subscriptions":false,"workbook_allow_subscriptions":false,"allow_subscribe_others":false,"workbook_owner_friendly_name":"Dmitry Kolotsey","is_guest":false,"is_revision_history_preview":false,"current_user_email":"Aliaksandr_Varachai@epam.com","current_user_id":24,"current_user_friendly_name":"Aliaksandr Varachai","current_user_domain_name":"minsk.epam.com","current_user_name":"Aliaksandr_Varachai","current_user_image_url":"/vizportal/api/rest/v1/userImages/17","current_custom_view_id":null,"vizql_root":"https://ecsb00100f14.epam.com/vizql/w/Overview2_0/v/Overview","site_root":"","site_url_name":"","composite_sizes":"{\"tablet\":{\"maxHeight\":0,\"maxWidth\":0,\"minHeight\":620,\"minWidth\":1000},\"desktop\":{\"maxHeight\":0,\"maxWidth\":0,\"minHeight\":620,\"minWidth\":1000},\"phone\":{\"maxHeight\":0,\"maxWidth\":0,\"minHeight\":620,\"minWidth\":1000}}","dsd_phone_max_size":500,"dsd_tablet_max_size":800,"visible_sheets":["Overview","Product","Customers","Shipping","Performance","Commission Model","Order Details","Forecast","What If Forecast","data"],"is_mobile":false,"is_mobile_device":false,"is_mobile_app":false,"is_authoring":false,"is_metrics_view":false,"is_metrics_enabled":false,"repository_urls":["Overview2_0/Overview","Overview2_0/Product","Overview2_0/Customers","Overview2_0/Shipping","Overview2_0/Performance","Overview2_0/CommissionModel","Overview2_0/OrderDetails","Overview2_0/Forecast","Overview2_0/WhatIfForecast","Overview2_0/data"],"origin_repository_url":"Overview2_0/Overview","workbook_repo_url":"Overview2_0","tabs_allowed":false,"mobile_app_cookie":"","current_project_id":6,"current_sheet_name":"","current_workbook_id":16,"current_view_id":135,"browser_rendering_threshold":100,"is_saas":false,"contact_support_uri":"","clear_session_on_unload":false,"facebookRedirectURI":"","is_browser_rendering_requested":true,"show_byline":false,"sessionid":"12ACB817B2C7469091336FC331EFB834-0:0","layoutid":"","requestURI":"https://ecsb00100f14.epam.com/views/Overview2_0/Overview?:embed=y&amp;:showAppBanner=false&amp;:showShareOptions=true&amp;:commentingEnabled=true&amp;:toolbar=top&amp;:size=1779,470","blogURI":"","downloadURI":"","parentID":null,"statefulURL":false,"external_static_asset_prefix":"https://ecsb00100f14.epam.com/vizql/v_103001706152100","local_static_asset_prefix":"https://ecsb00100f14.epam.com/vizql/v_103001706152100","loadOrderID":-1,"apiID":"host2","debugMode":false,"self_service_schedules_enabled":false,"user_time_zone_enabled":false,"display_schedules_in_client_timezone":true,"display_schedule_description_as_name":false,"keychain_version":1,"features_json":"{}","xdomain_active":false}</textarea>
+</div>
+
+
+<div style="display: none;"></div>
+<div id="overlay"></div>
+<div id="gdt_popup" class="modal-content">
+  <div id="gdt_popup_tab_1">
+    <div class="gdt_header modal-header"><span class="gdt_popup_title">Load Tour</span> <span
+        class="gdt_popup_close close">✖</span></div>
+    <div class="gdt_content_wrapper">
+      <ul class="content_column_middle">
+        <li><select id="gdt_tours_list" class="gdt_select" size="12" placeholder="items">
+          <option value="" disabled="">Select a tour</option>
+          <option gdt_index="0" gdt_tour_id="bf3d42e4-71b5-f82f-bfb3-90f056b4612d" class="defaultTour">
+            Dashboard_Tutorial
+          </option>
+          <option gdt_index="1" gdt_tour_id="bcd184fc-71dc-209f-a341-f5e0c4057609">DemoTour</option>
+          <option gdt_index="2" gdt_tour_id="568e8399-aadb-4e62-611d-926307bb2bf1">Quick Overview</option>
+          <option gdt_index="3" gdt_tour_id="fa3a6c1c-c43b-48fc-534c-902fcf06bc35">Second_Tour</option>
+        </select></li>
+        <li>
+          <button id="gdt_create_tour">Create New Tour</button>
+        </li>
+        <li>
+          <button id="gdt_load_tour">Load Tour</button>
+          <button id="gdt_delete_tour">Delete Tour</button>
+          <button id="gdt_setDefault_tour">Set As Default</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="gdt_popup_tab_3">
+    <div class="gdt_header modal-header"><span class="gdt_popup_title">Start Tour</span> <span
+        class="gdt_popup_close close">✖</span></div>
+    <div class="gdt_content_wrapper">
+      <ul class="content_column_middle">
+        <li><select id="gdt_steps_list" class="gdt_select" size="12" placeholder="items">
+          <option value="" disabled="">Select step to start from</option>
+        </select></li>
+        <li>
+          <button id="gdt_start_tour">Start Tour</button>
+          <button class="gdt_cancel">Cancel</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="gdt_popup_tab_2">
+    <div class="gdt_header modal-header"><span class="gdt_popup_title">Create New Tour</span> <span
+        class="gdt_popup_close close">✖</span></div>
+    <div class="gdt_content_wrapper">
+      <div class="content_column_left"><select id="gdt_elements" class="gdt_select" size="12" placeholder="items">
+        <option value="" disabled="">Elements</option>
+      </select></div>
+      <div class="content_column_middle">
+        <ul>
+          <li><input id="gdt_tour_name" placeholder="Tour Name"></li>
+          <li><input id="gdt_step_title" placeholder="Step Title"></li>
+          <li><textarea id="gdt_step_content" rows="9" placeholder="Step Content"></textarea></li>
+          <li>
+            <button id="gdt_save_step">Add Step</button>
+            <button id="gdt_remove_step">Remove Step</button>
+          </li>
+          <li>
+            <button id="gdt_save_tour">Save Tour</button>
+          </li>
+          <li>
+            <div><input id="gdt_isDefaultTour_tour" type="checkbox"> <label for="gdt_isDefaultTour_tour">Is
+              Default?</label></div>
+          </li>
+        </ul>
+      </div>
+      <div class="content_column_right">
+        <ul>
+          <li><select id="gdt_steps" class="gdt_select" size="12">
+            <option value="" disabled="">Steps</option>
+          </select></li>
+          <li>
+            <button id="gdt_step_up">⇧</button>
+            <button id="gdt_step_down">⇩</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "one-click-support",
+  "version": "0.0.1",
+  "description": "Web application for to bug report sending",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development NODE_TOOL=tableau NODE_IS_LOCAL_START=true webpack-dev-server",
+    "build": "cross-env NODE_ENV=production NODE_TOOL=tableau webpack"
+  },
+  "author": "AliaksandrVarachai",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^8.3.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-react-css-modules": "^3.3.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.5",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
+    "file-loader": "^1.1.11",
+    "postcss-calc": "^6.0.1",
+    "postcss-css-variables": "^0.8.1",
+    "postcss-global-import": "^1.0.6",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.4",
+    "postcss-nested": "^3.0.0",
+    "postcss-scss": "^1.0.5",
+    "style-loader": "^0.21.0",
+    "whatwg-fetch": "^2.0.4"
+  },
+  "repository": "empty",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}
