@@ -4,8 +4,9 @@
   "description": "Web application for to bug report sending",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development NODE_TOOL=tableau NODE_IS_LOCAL_START=true webpack-dev-server",
-    "build": "cross-env NODE_ENV=production NODE_TOOL=tableau webpack"
+    "start": "cross-env webpack-dev-server --hot --mode=development --env.tool=tableau",
+    "build": "cross-env webpack --mode=production --env.tool=tableau",
+    "build-dev": "cross-env webpack --mode=development --env.tool=tableau"
   },
   "author": "AliaksandrVarachai",
   "license": "ISC",

@@ -3,5 +3,4 @@ import ReactDOM from 'react-dom';
 
 import './index.pcss';
 
-alert('OCS started')
-
+console.log('********process.env.NODE_ENV=' + process.env.NODE_ENV);
