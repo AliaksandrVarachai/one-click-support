@@ -1,25 +1,98 @@
+/* TODO: move material iconst into local file */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+  --popup-width: 800px;
+  --content-w-padding: 15px;
+  --content-max-height: 600px;  /* TODO: get screen proportion */
+}
+
+
+/* Syntax styles */
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+
+/* Popup */
+
 .popup {
   position: fixed;
   box-sizing: border-box;
   left: 50%;
   top: 50%;
-  width: 800px;
-  height: 600px; /* TODO: get screen proportion */
-  transform: translate(-400px, -300px); /* TODO: add variables */
-  background: whitesmoke;
+  transform: translate(-50%, -50%);
+  width: var(--popup-width);
   padding: 20px;
   border: 2px solid grey;
+  background: whitesmoke;
+  opacity: 0.8;
   border-radius: 10px;
 
   &.popup-hidden {
     display: none;
   }
 
-  &.popup-visible {
+  &.popup-minimized {
+    top: auto;
+    transform: translate(-50%, 0);
+    bottom: 0;
+  }
+}
+
+
+/* Header */
+
+.header {
+  overflow: hidden;
+  background: silver;
+}
+
+.header-title {
+  display: inline-block;
+  padding: 5px var(--content-w-padding);
+  font-weight: bold;
+}
+
+.action {
+  float: right;
+  padding: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.action-close {
+  .popup-minimized & {
+    display: none;
+  }
+}
+
+.action-minimize {
+  .popup-minimized & {
+    display: none;
+  }
+}
+
+.action-show {
+  display: none;
+
+  .popup-minimized & {
     display: block;
   }
+}
 
-  &.popup-minimized {
-    /* some styles */
-  }
+
+/* Content */
+
+.content {
+  overflow-y: auto;
+  padding: 5px var(--content-w-padding);
+  max-height: var(--content-max-height);
 }

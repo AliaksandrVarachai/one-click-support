@@ -9,7 +9,7 @@ import './index.pcss';
 
 const PREFIX = 'ocs',
       HIDDEN = 'hidden',
-      VISIBLE = 'visible',
+      VISIBLE = 'normal',
       MINIMIZED = 'minimized';
 
 
@@ -40,44 +40,71 @@ class Popup extends React.PureComponent {
     });
   };
 
+  closeHandler = (e) => {
+    this.setState({
+      visibility: HIDDEN
+    });
+  };
+
+  minimizeHandler = (e) => {
+    this.setState({
+      visibility: MINIMIZED
+    });
+  };
+
+  showHandler = (e) => {
+    this.setState({
+      visibility: VISIBLE
+    });
+  };
+
+
   render() {
     const { visibility } = this.state;
     return (
       <div styleName={classnames('popup', {
         'popup-hidden': visibility === HIDDEN,
-        'popup-visible': visibility === VISIBLE,
         'popup-minimized': visibility === MINIMIZED
       })}>
-        <div>
-          <label htmlFor={`${PREFIX}-title`}>Title</label>
-          <input type="text" id={`${PREFIX}-title`} defaultValue="Bug report"/>
+        <div styleName="header">
+          <div className="material-icons" styleName="action action-close" onClick={this.closeHandler}>close</div>
+          <div className="material-icons" styleName="action action-minimize" onClick={this.minimizeHandler}>border_bottom</div>
+          <div className="material-icons" styleName="action action-show" onClick={this.showHandler}>border_outer</div>
+          <span styleName="header-title">One click support</span>
         </div>
-        <div>
-          <label htmlFor={`${PREFIX}-to`}>Title</label>
-          <input type="text" id={`${PREFIX}-to`} defaultValue=""/>
+
+        <div styleName={classnames('content', {'display-none': visibility !== VISIBLE})}>
+          <div>
+            <label htmlFor={`${PREFIX}-title`}>Title</label>
+            <input type="text" id={`${PREFIX}-title`} defaultValue="Bug report"/>
+          </div>
+          <div>
+            <label htmlFor={`${PREFIX}-to`}>Title</label>
+            <input type="text" id={`${PREFIX}-to`} defaultValue=""/>
+          </div>
+          <div>
+            <label htmlFor={`${PREFIX}-cc`}>CC</label>
+            <input type="text" id={`${PREFIX}-cc`} defaultValue=""/>
+          </div>
+          <div>
+            <label htmlFor={`${PREFIX}-priority`}>Priority</label>
+            <select id={`${PREFIX}-priority`}>
+              <option value="blocker">Blocker</option>
+              <option value="major">Major</option>
+              <option value="minor">Minor</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor={`${PREFIX}-description`}>Description</label>
+            <textarea id={`${PREFIX}-description`} placeholder="Please provide descriptions here"/>
+          </div>
+          <button>
+            Add default screenshot
+          </button>
+          <button>
+            Add attachment
+          </button>
         </div>
-        <div>
-          <label htmlFor={`${PREFIX}-cc`}>CC</label>
-          <input type="text" id={`${PREFIX}-cc`} defaultValue=""/>
-        </div>
-        <div>
-          <label htmlFor={`${PREFIX}-priority`}>Priority</label>
-          <select id={`${PREFIX}-priority`}>
-            <option value="blocker">Blocker</option>
-            <option value="major">Major</option>
-            <option value="minor">Minor</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor={`${PREFIX}-description`}>Description</label>
-          <textarea id={`${PREFIX}-description`} placeholder="Please provide descriptions here"/>
-        </div>
-        <button>
-          Add default screenshot
-        </button>
-        <button>
-          Add attachment
-        </button>
       </div>
     );
   }
