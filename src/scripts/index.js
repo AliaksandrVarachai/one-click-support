@@ -58,6 +58,10 @@ class Popup extends React.PureComponent {
     });
   };
 
+  defaultScreenshotHandler = (e) => {
+    console.log('defaultScreenshotHandler is called');
+  };
+
 
   render() {
     const { visibility } = this.state;
@@ -74,36 +78,60 @@ class Popup extends React.PureComponent {
         </div>
 
         <div styleName={classnames('content', {'display-none': visibility !== VISIBLE})}>
-          <div>
-            <label htmlFor={`${PREFIX}-title`}>Title</label>
-            <input type="text" id={`${PREFIX}-title`} defaultValue="Bug report"/>
+          <div styleName="table">
+            <div styleName="table-row">
+              <div styleName="cell">
+                <label htmlFor={`${PREFIX}-title`} styleName="label-title">Title</label>
+              </div>
+              <div styleName="cell">
+                <input type="text" id={`${PREFIX}-title`} styleName="input-title" defaultValue="Bug report"/>
+              </div>
+            </div>
+            <div styleName="table-row">
+              <div styleName="cell">
+                <label htmlFor={`${PREFIX}-to`} styleName="label-to">To</label>
+              </div>
+              <div styleName="cell">
+                <input type="text" id={`${PREFIX}-to`} styleName="input-to" defaultValue=""/>
+              </div>
+            </div>
+            <div styleName="table-row">
+              <div styleName="cell">
+                <label htmlFor={`${PREFIX}-cc`} styleName="label-cc">CC</label>
+              </div>
+              <div styleName="cell">
+                <input type="text" id={`${PREFIX}-cc`} styleName="input-cc" defaultValue=""/>
+              </div>
+            </div>
+            <div styleName="table-row">
+              <div styleName="cell">
+                <label htmlFor={`${PREFIX}-priority`} styleName="label-priority">Priority</label>
+              </div>
+              <div styleName="cell">
+                <select id={`${PREFIX}-priority`} styleName="input-priority" styleName="">
+                  <option value="blocker">Blocker</option>
+                  <option value="major">Major</option>
+                  <option value="minor">Minor</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div>
-            <label htmlFor={`${PREFIX}-to`}>Title</label>
-            <input type="text" id={`${PREFIX}-to`} defaultValue=""/>
+
+
+          <div styleName="row">
+            <label htmlFor={`${PREFIX}-description`} styleName="label-description">Description</label>
+            <textarea id={`${PREFIX}-description`} styleName="input-description" placeholder="Please provide descriptions here"/>
           </div>
-          <div>
-            <label htmlFor={`${PREFIX}-cc`}>CC</label>
-            <input type="text" id={`${PREFIX}-cc`} defaultValue=""/>
+          <div styleName="row">
+            <label htmlFor={`${PREFIX}-to`} styleName="label-default-screenshot">
+              Add default screenshot
+            </label>
+            <input id={`${PREFIX}-to`} type="checkbox" styleName="input-default-screenshot" defaultChecked/>
           </div>
-          <div>
-            <label htmlFor={`${PREFIX}-priority`}>Priority</label>
-            <select id={`${PREFIX}-priority`}>
-              <option value="blocker">Blocker</option>
-              <option value="major">Major</option>
-              <option value="minor">Minor</option>
-            </select>
+          <div styleName="row">
+            <label htmlFor={`${PREFIX}-attachment`} styleName="label-attachment">Attachment</label>
+            <input type="file" id={`${PREFIX}-attachment`} styleName="input-attachment" multiple/>
           </div>
-          <div>
-            <label htmlFor={`${PREFIX}-description`}>Description</label>
-            <textarea id={`${PREFIX}-description`} placeholder="Please provide descriptions here"/>
-          </div>
-          <button>
-            Add default screenshot
-          </button>
-          <button>
-            Add attachment
-          </button>
         </div>
       </div>
     );
