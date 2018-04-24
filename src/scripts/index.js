@@ -116,8 +116,6 @@ class Popup extends React.PureComponent {
               </div>
             </div>
           </div>
-
-
           <div styleName="row">
             <label htmlFor={`${PREFIX}-description`} styleName="label-description">Description</label>
             <textarea id={`${PREFIX}-description`} styleName="input-description" placeholder="Please provide descriptions here"/>
