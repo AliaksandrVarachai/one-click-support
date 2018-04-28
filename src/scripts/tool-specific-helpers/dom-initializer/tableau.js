@@ -3,7 +3,7 @@ export default function addOcsButtonToDocument() {
   btn.innerHTML = 'One Click Support';
   btn.setAttribute('role', 'button');
   btn.setAttribute('ocs-onclick', 'showMainPopup');
-  btn.setAttribute('style', 'padding: 5px;');
-  document.querySelector('[data-tb-test-id="help-menu"]').parentNode.insertAdjacentElement('afterbegin', btn);
+  btn.setAttribute('style', 'position: absolute; top: 12px; right: 350px; width: 140px; padding: 5px;');
+  document.body.appendChild(btn);
   return btn;
 }

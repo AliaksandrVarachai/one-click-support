@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactEventOutside from 'react-event-outside';
 import classnames from 'classnames';
+import html2canvas from 'html2canvas';
 import { OCS_ROOT_ID, OCS_EVENTS } from './constants/constants';
 import addOcsButtonToDocument from './tool-specific-helpers/dom-initializer';
+import Tabs from './components/Tabs/Tabs';
 
 import './index.pcss';
 
@@ -18,7 +20,8 @@ class Popup extends React.PureComponent {
     super(props);
     this.state = {
       visibility: HIDDEN
-    }
+    };
+    this.image = React.createRef();
   }
 
   handleEvent = (event) => {
@@ -30,8 +33,12 @@ class Popup extends React.PureComponent {
         return;
       switch(eventOutsideName) {
         case 'showMainPopup':
-          this.setState({
-            visibility: VISIBLE
+          // TODO: disable One Click Support button
+          this.takeScreenshot().then(canvas => {
+            this.setState({
+              visibility: VISIBLE
+            });
+            this.image.current.src = canvas.toDataURL('image/png', 1);
           });
           break;
         default:
@@ -41,9 +48,11 @@ class Popup extends React.PureComponent {
   };
 
   closeHandler = (e) => {
-    this.setState({
-      visibility: HIDDEN
-    });
+    if (confirm('Are you sure to close the window?')) {
+      this.setState({
+        visibility: HIDDEN
+      });
+    }
   };
 
   minimizeHandler = (e) => {
@@ -58,10 +67,34 @@ class Popup extends React.PureComponent {
     });
   };
 
-  defaultScreenshotHandler = (e) => {
-    console.log('defaultScreenshotHandler is called');
+  sendHandler = (e) => {
+    alert('Message is sent');
+    this.setState({
+      visibility: HIDDEN
+    });
   };
 
+  takeScreenshot = (e) => {
+    // This direct DOM manipulation makes html2canvas take a screenshot of an invisible element,
+    // because onclone option does not copy iframe content properly.
+    // If there are unwilling side effects try {async: false} option.
+    const invisibleNode = frames[0].document.getElementById('tabViewer');
+    const originVisibility = invisibleNode.style.visibility;
+    const modifiedVisibility = 'visible';
+    invisibleNode.style.visibility = modifiedVisibility;
+    return html2canvas(document.body, {
+      async: true,
+      proxy: process.env.NODE_IS_STARTED_LOCALLY ? 'localhost:9091' : null,
+      backgroundColor: null,
+      useCORS: true,
+      logging: process.env.NODE_ENV !== 'production',
+    }).then(canvas => {
+      if (invisibleNode.style.visibility === modifiedVisibility) {
+        invisibleNode.style.visibility = originVisibility;
+      }
+      return canvas;
+    });
+  };
 
   render() {
     const { visibility } = this.state;
@@ -78,58 +111,55 @@ class Popup extends React.PureComponent {
         </div>
 
         <div styleName={classnames('content', {'display-none': visibility !== VISIBLE})}>
-          <div styleName="table">
-            <div styleName="table-row">
-              <div styleName="cell">
-                <label htmlFor={`${PREFIX}-title`} styleName="label-title">Title</label>
+          <Tabs labels={['Main', 'Screenshot preview']}>
+            <div styleName="tab">
+              <div styleName="table">
+                <div styleName="table-row">
+                  <div styleName="cell">
+                    <label htmlFor={`${PREFIX}-title`} styleName="label-title">Title</label>
+                  </div>
+                  <div styleName="cell">
+                    <input type="text" id={`${PREFIX}-title`} styleName="input-title" defaultValue="Bug report"/>
+                  </div>
+                </div>
+                <div styleName="table-row">
+                  <div styleName="cell">
+                    <label htmlFor={`${PREFIX}-priority`} styleName="label-priority">Priority</label>
+                  </div>
+                  <div styleName="cell">
+                    <select id={`${PREFIX}-priority`} styleName="input-priority" defaultValue="minor">
+                      <option value="blocker">Blocker</option>
+                      <option value="major">Major</option>
+                      <option value="minor">Minor</option>
+                    </select>
+                  </div>
+                </div>
               </div>
-              <div styleName="cell">
-                <input type="text" id={`${PREFIX}-title`} styleName="input-title" defaultValue="Bug report"/>
+              <div styleName="row flex-height">
+                <label htmlFor={`${PREFIX}-description`} styleName="label-description">Description</label>
+                <textarea id={`${PREFIX}-description`} styleName="input-description" placeholder="Please provide descriptions here"/>
+              </div>
+              <div styleName="row">
+                <label htmlFor={`${PREFIX}-to`} styleName="label-default-screenshot">
+                  Add default screenshot
+                </label>
+                <input id={`${PREFIX}-to`} type="checkbox" styleName="input-default-screenshot" defaultChecked/>
+              </div>
+              <div styleName="row">
+                <label htmlFor={`${PREFIX}-attachment`} styleName="label-attachment">Attachment</label>
+                <input type="file" id={`${PREFIX}-attachment`} styleName="input-attachment" multiple/>
               </div>
             </div>
-            <div styleName="table-row">
-              <div styleName="cell">
-                <label htmlFor={`${PREFIX}-to`} styleName="label-to">To</label>
-              </div>
-              <div styleName="cell">
-                <input type="text" id={`${PREFIX}-to`} styleName="input-to" defaultValue=""/>
-              </div>
+
+            <div styleName="tab">
+              <img ref={this.image} src="about:blank" alt="no image" styleName="screenshot"/>
             </div>
-            <div styleName="table-row">
-              <div styleName="cell">
-                <label htmlFor={`${PREFIX}-cc`} styleName="label-cc">CC</label>
-              </div>
-              <div styleName="cell">
-                <input type="text" id={`${PREFIX}-cc`} styleName="input-cc" defaultValue=""/>
-              </div>
-            </div>
-            <div styleName="table-row">
-              <div styleName="cell">
-                <label htmlFor={`${PREFIX}-priority`} styleName="label-priority">Priority</label>
-              </div>
-              <div styleName="cell">
-                <select id={`${PREFIX}-priority`} styleName="input-priority" styleName="">
-                  <option value="blocker">Blocker</option>
-                  <option value="major">Major</option>
-                  <option value="minor">Minor</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div styleName="row">
-            <label htmlFor={`${PREFIX}-description`} styleName="label-description">Description</label>
-            <textarea id={`${PREFIX}-description`} styleName="input-description" placeholder="Please provide descriptions here"/>
-          </div>
-          <div styleName="row">
-            <label htmlFor={`${PREFIX}-to`} styleName="label-default-screenshot">
-              Add default screenshot
-            </label>
-            <input id={`${PREFIX}-to`} type="checkbox" styleName="input-default-screenshot" defaultChecked/>
-          </div>
-          <div styleName="row">
-            <label htmlFor={`${PREFIX}-attachment`} styleName="label-attachment">Attachment</label>
-            <input type="file" id={`${PREFIX}-attachment`} styleName="input-attachment" multiple/>
-          </div>
+          </Tabs>
+        </div>
+
+        <div styleName="footer">
+          <button styleName="button" onClick={this.closeHandler}><i className="material-icons">block</i>Cancel</button>
+          <button styleName="button" onClick={this.sendHandler}><i className="material-icons">check</i>Send</button>
         </div>
       </div>
     );

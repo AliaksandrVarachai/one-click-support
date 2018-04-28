@@ -1,0 +1,50 @@
+.tabs {
+  position: relative;
+  height: 500px;
+  clear: both;
+}
+
+.tab {
+  float: left;
+}
+
+.label {
+  position: relative;
+  left: 1px;
+  margin-left: -1px;
+  border: 1px solid gray;
+  padding: 5px 10px;
+  border-radius: 5px 5px 0 0;
+  background: silver;
+  color: gray;
+}
+
+.label:hover {
+  cursor: pointer;
+  background: gray;
+  color: black;
+}
+
+.radio {
+  display: none;
+
+  &:checked ~ .label {
+    background: whitesmoke;
+    border-bottom: whitesmoke;
+    z-index: 2;
+    color: black;
+
+    & ~ .content {
+      z-index: 1;
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: whitesmoke;
+}

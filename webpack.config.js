@@ -13,7 +13,8 @@ const polyfills = [
 
 module.exports = function(env, argv) {
   const isProduction = argv.mode === 'production';
-  const isStartedLocally = path.posix.basename(require.main.filename, '.js') === 'webpack-dev-server';
+  // const isStartedLocally = path.basename(require.main.filename, '.js') === 'webpack-dev-server';
+  const isStartedLocally = path.basename(require.main.filename, '.js') === 'server';
   const dist = path.resolve(__dirname, 'dist-' + env.tool);
 
   return {
@@ -31,14 +32,16 @@ module.exports = function(env, argv) {
       path: dist,
       publicPath: '/'
     },
-    devtool: isProduction ? false : 'eval',
+    mode: argv.mode || 'production',
+    devtool: isProduction ? false : 'eval-source-map',
     plugins: [
-      new CleanWebpackPlugin([dist]),
+      isStartedLocally ? null : new CleanWebpackPlugin([dist]),
       new webpack.DefinePlugin({
+        // 'process.env.NODE_ENV': JSON.stringify(argv.mode), will be set by Webpack mode option
         'process.env.NODE_TOOL': JSON.stringify(env.tool),
         'process.env.NODE_IS_STARTED_LOCALLY': JSON.stringify(isStartedLocally),
       }),
-    ],
+    ].filter(Boolean),
     module: {
       rules: [
         {
@@ -79,9 +82,18 @@ module.exports = function(env, argv) {
       ]
     },
 
-    devServer: {
-      contentBase: dist,
-      port: 9091
-    }
+    // devServer: {
+    //   contentBase: dist,
+    //   port: 9091,
+    //   proxy: {
+    //     'localhost:9091\?url=': {
+    //       target: 'localhost:8080',
+    //       bypass: function(req, res, proxyOptions) {
+    //         console.log('*********** bypass');
+    //         return 'hi';
+    //       }
+    //     }
+    //   }
+    // }
   };
 };
