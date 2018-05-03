@@ -51,4 +51,5 @@ The script adds a tag `<div id="one-click-support-root"></div>` to the end of bo
  NPM command                 | Description                                    | Test link
 ---------------------------- |----------------------------------------------- | -----------------------------------------------
  npm start                   | Launches OCS local server for Tableau          | [Tableau](http://localhost:9091/tableau.html)
+ npm run server              | Launches proxy https server for Tableau        | [Tableau Proxy](https://localhost:9091/tableau.html)
 

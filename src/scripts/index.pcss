@@ -98,6 +98,12 @@
   padding: 10px var(--content-w-padding);
 }
 
+.tabs {
+  position: relative;
+  height: 500px;
+  clear: both;
+}
+
 /* Content: main form */
 
 .tab {
@@ -105,6 +111,13 @@
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
+
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: whitesmoke;
 }
 
 .flex-height {
@@ -175,6 +188,15 @@
 
 .input-attachment {
   margin-left: 10px;
+}
+
+.link {
+  color: darkblue;
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /* Content: screenshot */

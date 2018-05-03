@@ -11,9 +11,15 @@ export const OCS_NAMESPACE = '83c969ac-fc8b-4ef2-a7ab-2b9906024119';
 export const OCS_ROOT_ID = 'one-click-support-root';
 
 /**
- * Pairs of listened events and relevant DOM attributes
+ * Pairs of listened events and relevant DOM attributes.
  * @type {{string: string}}
  */
 export const OCS_EVENTS = {
   'click': 'ocs-onclick',
 };
+
+/**
+ * Prefix for DOM attributes.
+ * @type {string}
+ */
+export const PREFIX = 'ocs';

@@ -13,7 +13,6 @@ const polyfills = [
 
 module.exports = function(env, argv) {
   const isProduction = argv.mode === 'production';
-  // const isStartedLocally = path.basename(require.main.filename, '.js') === 'webpack-dev-server';
   const isStartedLocally = path.basename(require.main.filename, '.js') === 'server';
   const dist = path.resolve(__dirname, 'dist-' + env.tool);
 
@@ -36,6 +35,7 @@ module.exports = function(env, argv) {
     devtool: isProduction ? false : 'eval-source-map',
     plugins: [
       isStartedLocally ? null : new CleanWebpackPlugin([dist]),
+      isStartedLocally ? new webpack.HotModuleReplacementPlugin() : null,
       new webpack.DefinePlugin({
         // 'process.env.NODE_ENV': JSON.stringify(argv.mode), will be set by Webpack mode option
         'process.env.NODE_TOOL': JSON.stringify(env.tool),

@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OCS_NAMESPACE } from '../../constants/constants';
+import { OCS_NAMESPACE, PREFIX } from '../../constants/client';
 
 import './Tabs.pcss';
 
 const uuidv5 = require('uuid/v5');
-
-const PREFIX = 'ocs-tabs',
-      LABEL_RESERVED_PREFIX = 'Tab Label';
 
 /**
  * Transforms string to UUID useful for class name format.
@@ -43,11 +40,11 @@ export default class Tabs extends React.PureComponent {
           return (
             <div styleName="tab">
               <input type="radio"
-                     id={labelUuid}
-                     name={`${PREFIX}-radio`}
+                     id={label}
+                     name={`${PREFIX}-tabs-radio`}
                      styleName="radio"
                      defaultChecked={inx === 0}/>
-              <label htmlFor={labelUuid}
+              <label htmlFor={label}
                      styleName="label">
                 {label}
               </label>
