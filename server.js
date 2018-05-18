@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const express = require('express');
+const multiparty = require('multiparty');
 const fs = require('fs');
 const https = require('https');
 const request = require('request');
@@ -15,7 +16,11 @@ const compiler = webpack(config);
 const ocsServerKey = fs.readFileSync('./resources/ssl/ocs-server-key.pem');
 const ocsServerCert = fs.readFileSync('./resources/ssl/ocs-server-cert.pem');
 
+let report;
+
 app.use(cors());
+
+//app.use(bodyParser.json());
 
 // TODO: add a certificate for https://ecsb00100f14.epam.com to fix 'unable to verify the first certificate' error
 app.use(`/${IMAGE_PROXY_PATH}`, function(req, res, next) {
@@ -38,6 +43,34 @@ app.use(`/${IMAGE_PROXY_PATH}`, function(req, res, next) {
   } else {
     next();
   }
+});
+
+app.use('/api/:id', function(req, res, next) {
+  switch (req.params.id) {
+    case 'version':
+      res.send(JSON.stringify('3.0'));
+      break;
+    case 'bug-report':
+      const form = new multiparty.Form();
+      form.parse(req, function(err, fields, files) {
+        report = {
+          fields,
+          files,
+        }
+      });
+      console.log('******report=', report)
+      res.send(JSON.stringify({isSuccess: true}));
+      break;
+    default:
+      console.warn(`There is no requested api method "/api/${req.params.id}"`);
+  }
+  next();
+});
+
+app.use('/test', function(req, res, next) {
+  res.writeHead(200, {'content-type': 'text/plain'});
+  res.write('received upload:\n\n');
+  res.end(report);
 });
 
 app.use(webpackDevMiddleware(compiler, {

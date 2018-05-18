@@ -1,4 +1,4 @@
-/* TODO: move material iconst into local file */
+/* TODO: move material icons into local file */
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
@@ -9,6 +9,21 @@
   --small-font-size: 12px;
 }
 
+:global .ocs__start-button {
+  &[disabled] {
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
 
 /* Syntax styles */
 
@@ -107,17 +122,19 @@
 /* Content: main form */
 
 .tab {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-
   position: absolute;
-  top: 30px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: whitesmoke;
+}
+
+.tab-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .flex-height {
@@ -149,6 +166,10 @@
 
 .row {
   margin: 10px 0;
+
+  &:last-of-type {
+    margin: 10px 0 0;
+  }
 }
 
 .label-title,
@@ -191,7 +212,7 @@
 }
 
 .link {
-  color: darkblue;
+  color: #367e9c;
   text-decoration: underline;
 
   &:hover {

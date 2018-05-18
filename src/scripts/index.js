@@ -5,8 +5,10 @@ import classnames from 'classnames';
 import html2canvas from 'html2canvas';
 import { IMAGE_PROXY_PATH } from './constants/server';
 import { OCS_ROOT_ID, OCS_EVENTS, PREFIX } from './constants/client';
+import FileUploader from './components/FileUploader/FileUploader';
+import restApi from './rest-api';
 import domInitializer from './tool-specific-helpers/dom-initializer';
-// import Tabs from './components/Tabs/Tabs';
+import screenshotDOMPreprocess from './tool-specific-helpers/screenshot-dom-preprocessor';
 
 import './index.pcss';
 
@@ -20,14 +22,14 @@ class Popup extends React.PureComponent {
     super(props);
     this.state = {
       visibility: HIDDEN,
-      tab: 'main'
+      tab: 'main',
+      isScreenshot: true,
+      storedFiles: {}, // has a shape: {fileName: {content: Blob, preview: Base64String}, ...}
     };
     this.image = React.createRef();
   }
 
   handleEvent = (event) => {
-    const { toggleBtnDisabled } = this.props;
-
     Object.keys(OCS_EVENTS).forEach(ocsEvent => {
       if (event.type !== ocsEvent)
         return;
@@ -36,7 +38,7 @@ class Popup extends React.PureComponent {
         return;
       switch(eventOutsideName) {
         case 'showMainPopup':
-          toggleBtnDisabled(true); // disable One Click Support button
+          domInitializer.disableOcsButton(true);
           this.takeScreenshot().then(canvas => {
             this.setState({
               visibility: VISIBLE
@@ -51,9 +53,8 @@ class Popup extends React.PureComponent {
   };
 
   closeHandler = (e) => {
-    const { toggleBtnDisabled } = this.props;
     if (confirm('Are you sure to close the window?')) {
-      toggleBtnDisabled(false); // enable One Click Support button
+      domInitializer.disableOcsButton(false);
       this.setState({
         visibility: HIDDEN
       });
@@ -73,48 +74,88 @@ class Popup extends React.PureComponent {
   };
 
   sendHandler = (e) => {
-    const { toggleBtnDisabled } = this.props;
-    toggleBtnDisabled(false); // enable One Click Support button
-    alert('Message is sent');
-    this.setState({
-      visibility: HIDDEN
-    });
+    domInitializer.disableOcsButton(false);
+    restApi.getVersion()
+      .then(version => {
+        console.log('***** version: ', version);
+        this.setState({
+          visibility: HIDDEN
+        });
+        return version;
+      })
+      .then(version => restApi.sendBugReport('title-1', 'priority-1', 'description-1', null, []))
+      .then(json => {
+        console.log('***** response of server: ', json)
+      })
+      .catch(message => {
+        console.log(message);
+      });
   };
 
   changeTabHandler = (tab) => (e) => {
-    console.log('****** tabLabel=', tab);
     this.setState({
       tab
     });
   };
 
-
-
   takeScreenshot = (e) => {
-    // This direct DOM manipulation makes html2canvas take a screenshot of an invisible element,
-    // because onclone option does not copy iframe content properly.
-    // If there are unwilling side effects try {async: false} option.
-    const invisibleNode = frames[0].document.getElementById('tabViewer');
-    const originVisibility = invisibleNode.style.visibility;
-    const modifiedVisibility = 'visible';
-    invisibleNode.style.visibility = modifiedVisibility;
+    const revertDOMChanges = screenshotDOMPreprocess();
     return html2canvas(document.body, {
-      async: true,
+      async: true,  // If there are unwilling side effects related to the direct DOM manipulations, try {async: false}
       // TODO: configure proxy for Apache on a server side
       proxy: `${location.protocol}//${location.host}/${IMAGE_PROXY_PATH}`,
       backgroundColor: null,
       useCORS: true,
       logging: process.env.NODE_ENV !== 'production',
     }).then(canvas => {
-      if (invisibleNode.style.visibility === modifiedVisibility) {
-        invisibleNode.style.visibility = originVisibility;
-      }
+      revertDOMChanges();
       return canvas;
     });
   };
 
+  fileUploadHandler = (file) => {
+    const { storedFiles } = this.state;
+    this.setState({
+      storedFiles: {
+        ...storedFiles,
+        ...file
+      }
+    });
+  };
+
+  fileRemoveHandler = (fileName) => (e) => {
+    const { [fileName]: fileToRemove, ...filesToStore } = this.state.storedFiles;
+    this.setState({
+      storedFiles: filesToStore
+    });
+  };
+
+  filePreviewHandler = (fileInx) => (e) => {
+    this.setState({
+      tab: `attachment-${fileInx}`
+    });
+  };
+
+  screenshotUploadHandler = (e) => {
+    this.setState({
+      isScreenshot: true
+    });
+  };
+
+  screenshotRemoveHandler = (e) => {
+    this.setState({
+      isScreenshot: false
+    });
+  };
+
+  screenshotPreviewHandler = (e) => {
+    this.setState({
+      tab: 'screenshot-preview'
+    });
+  };
+
   render() {
-    const { visibility, tab } = this.state;
+    const { visibility, tab, isScreenshot, storedFiles } = this.state;
     return (
       <div styleName={classnames('popup', {
         'popup-hidden': visibility === HIDDEN,
@@ -129,8 +170,10 @@ class Popup extends React.PureComponent {
 
         <div styleName={classnames('content', {'display-none': visibility !== VISIBLE})}>
           <div styleName="tabs">
+
+            {/* main tab */}
             <div styleName={classnames('tab', {'display-none': tab !== 'main'})}>
-              {/*<div styleName="tab-content">*/}
+              <div styleName="tab-content">
                 <div styleName="table">
                   <div styleName="table-row">
                     <div styleName="cell">
@@ -157,40 +200,69 @@ class Popup extends React.PureComponent {
                   <label htmlFor={`${PREFIX}-description`} styleName="label-description">Description</label>
                   <textarea id={`${PREFIX}-description`} styleName="input-description" placeholder="Please provide descriptions here"/>
                 </div>
-                <div styleName="row">
-                  <label htmlFor={`${PREFIX}-to`} styleName="label-default-screenshot">
-                    Add default screenshot
-                  </label>
-                  <input id={`${PREFIX}-to`} type="checkbox" styleName="input-default-screenshot" defaultChecked/>
-                  <span styleName="link" onClick={this.changeTabHandler('screenshot-preview')}>Preview screenshot</span>
+                <div styleName="row ">
+                  <FileUploader storedFiles={storedFiles}
+                                isScreenshot={isScreenshot}
+                                onScreenshotUpload={this.screenshotUploadHandler}
+                                onScreenshotRemove={this.screenshotRemoveHandler}
+                                onScreenshotPreview={this.screenshotPreviewHandler}
+                                onFileUpload={this.fileUploadHandler}
+                                onFileRemove={this.fileRemoveHandler}
+                                onFilePreview={this.filePreviewHandler}
+                  />
                 </div>
-                <div styleName="row">
-                  <label htmlFor={`${PREFIX}-attachment`} styleName="label-attachment">Attachment</label>
-                  <input type="file" id={`${PREFIX}-attachment`} styleName="input-attachment" multiple/>
-                </div>
-              {/*</div>*/}
+              </div>
             </div>
-          </div>
 
-          <div styleName={classnames('tab', {'display-none': tab !== 'screenshot-preview'})}>
-            <img ref={this.image} src="about:blank" alt="no image" styleName="screenshot"/>
+            {/* screenshot-preview tab */}
+            <div styleName={classnames('tab', {'display-none': tab !== 'screenshot-preview'})}>
+              <div styleName="tab-content">
+                <img ref={this.image} src="//:0" alt="no image" styleName="screenshot"/>
+              </div>
+            </div>
+
+            {/* attachment preview tabs */}
+            {Object.keys(this.state.storedFiles).map((fileName, inx) => (
+              <div styleName={classnames('tab', {'display-none': tab !== `attachment-${inx}`})}
+                   key={fileName}>
+                <div styleName="tab-content">
+                  <img src={this.state.storedFiles[fileName].preview} alt="no preview" styleName="screenshot"/>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         <div styleName="footer">
-          <button styleName="button" onClick={this.closeHandler}><i className="material-icons">block</i>Cancel</button>
-          <button styleName="button" onClick={this.sendHandler}><i className="material-icons">check</i>Send</button>
+          <button styleName={classnames('button', {'display-none': tab !== 'main'})}
+                  onClick={this.closeHandler}>
+            <i className="material-icons">block</i>
+            Cancel
+          </button>
+          <button styleName={classnames('button', {'display-none': tab !== 'main'})}
+                  onClick={this.sendHandler}>
+            <i className="material-icons">check</i>
+            Send
+          </button>
+          <button styleName={classnames('button', {'display-none': tab === 'main'})}
+                  onClick={this.changeTabHandler('main')}>
+            <i className="material-icons">arrow_back</i>
+            Back to form
+          </button>
         </div>
       </div>
     );
   }
 }
 
-const btn = domInitializer.addOcsButtonToDocument();
-const ocsToggleDisabled = domInitializer.getOcsButtonToggleDisabled(btn);
-const ocsRoot = document.createElement('div');
-ocsRoot.id = OCS_ROOT_ID;
-document.body.appendChild(ocsRoot);
-const InitializedPopup = ReactEventOutside(Object.keys(OCS_EVENTS))(Popup);
-
-ReactDOM.render(<InitializedPopup toggleBtnDisabled={ocsToggleDisabled}/>, ocsRoot);
+domInitializer.addOcsButtonAsync()
+  .then(btn => {
+    const ocsRoot = document.createElement('div');
+    ocsRoot.id = OCS_ROOT_ID;
+    document.body.appendChild(ocsRoot);
+    const InitializedPopup = ReactEventOutside(Object.keys(OCS_EVENTS))(Popup);
+    ReactDOM.render(<InitializedPopup/>, ocsRoot);
+  })
+  .catch(msg => {
+    console.log(msg);
+  });

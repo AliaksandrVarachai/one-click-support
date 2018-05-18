@@ -1,0 +1,60 @@
+.input-attachment {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.attachment-item {
+  margin-bottom: 6px;
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+}
+
+.attachment-remove {
+  margin-left: 5px;
+  vertical-align: bottom;
+  color: #757575;
+
+  &:global(.material-icons) {
+    font-size: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: black;
+  }
+}
+
+.attach-button {
+  margin-right: 20px;
+  color: #367e9c;
+
+  &:hover {
+    cursor: pointer;
+    color: #265673;
+  }
+}
+
+/* TODO: move to extend as duplicated styles */
+.link {
+  color: #367e9c;
+
+  &:hover {
+    cursor: pointer;
+    color: #265673;
+    text-decoration: underline;
+  }
+}
+
+.display-none {
+  display: none;
+
+  &:global(.material-icons) {
+    display: none;
+  }
+}
