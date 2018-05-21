@@ -74,18 +74,25 @@ class Popup extends React.PureComponent {
   };
 
   sendHandler = (e) => {
+    const { storedFiles, isScreenshot } = this.state;
     domInitializer.disableOcsButton(false);
     restApi.getVersion()
       .then(version => {
-        console.log('***** version: ', version);
+        console.log(`Response from server: version = ${version}`);
         this.setState({
           visibility: HIDDEN
         });
         return version;
       })
-      .then(version => restApi.sendBugReport('title-1', 'priority-1', 'description-1', null, []))
+      .then(version => restApi.sendBugReport({
+        title: 'Title of bug report',
+        priority: 'Priority of bug report',
+        description: 'Description of bug report',
+        screenshot: isScreenshot ? this.image.current.src : '',
+        files: storedFiles,
+      }))
       .then(json => {
-        console.log('***** response of server: ', json)
+        console.log('Response from a server: ', json)
       })
       .catch(message => {
         console.log(message);

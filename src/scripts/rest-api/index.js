@@ -41,8 +41,6 @@ function post(api, formData) {
   const options = {
     headers: new Headers({
       'Accept': 'application/json',
-      //'Content-Type': 'application/json'
-      'Content-Type': 'multipart/form-data'
     }),
     method: 'POST',
     body: formData
@@ -70,13 +68,13 @@ function getVersion() {
  * @returns {Promise<object|null>} - response from server or null if there is not any data in response body.
  * @throws {error} - status and description of the error.
  */
-function sendBugReport({ title, priority, description, screenshot = null, files = {}}) {
+function sendBugReport({ title, priority, description, screenshot = '', files = {}}) {
   const formData = new FormData();
   // TODO: add validation & create map for fields
   formData.append('title', title);
   formData.append('priority', priority);
   formData.append('description', description);
-  // formData.append('screenshot', screenshot); must be canvas.toDataURL('image/png') w/o compression
+  formData.append('screenshot', screenshot);
   Object.keys(files).forEach(fileName => {
     formData.append('files[]', files[fileName].content, fileName);
   });
