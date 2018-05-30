@@ -29,7 +29,7 @@ export default function process() {
   // Absolute positioned elements are not shown inside of the '.QuantitativeFilterBox' node because of its small height and props {overflow: hidden}
   revertHandler.quantitativeFilterBox = (function() {
     const nodes = frames[0] && frames[0].document.getElementsByClassName('QuantitativeFilterBox');
-    if (!nodes.length)
+    if (!nodes || !nodes.length)
       return noop;
 
     const oldOverflows = [];

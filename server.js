@@ -16,7 +16,13 @@ const compiler = webpack(config);
 const ocsServerKey = fs.readFileSync('./resources/ssl/ocs-server-key.pem');
 const ocsServerCert = fs.readFileSync('./resources/ssl/ocs-server-cert.pem');
 
-let report;
+const bodyParser = require('body-parser');
+
+// storage for the last sent bug report
+const report = {
+  fields: {},
+  files: {},
+};
 
 function blobToBase64Src(blob) {
   return 'data:image/png;base64,' + blob.toString('base64');
@@ -47,132 +53,101 @@ app.use(`/${IMAGE_PROXY_PATH}`, function(req, res, next) {
   }
 });
 
+app.use(bodyParser.json());
+
 app.use('/api/:id', function(req, res, next) {
   switch (req.params.id) {
     case 'version':
       res.status(200).json('3.0');
       return next();
-    case 'bug-report':
-      const form = new multiparty.Form();
-      form.parse(req, function(err, fields, files) {
-        if (err) {
-          res.status(500).json(err);
-          return next(err);
-        }
-        report = {
-          fields,
-          files,
-        };
-        res.status(200).json({isSuccess: true});
+    // case 'create-report':
+    //   const form = new multiparty.Form();
+    //   form.parse(req, function(err, { fields }, files) {
+    //     if (err) {
+    //       res.status(400).json(err);
+    //       return next(err);
+    //     }
+    //     report = {
+    //       fields,
+    //       files,
+    //     };
+    //     console.log('report.fields=', report.fields)
+    //     res.status(200).json({isSuccess: true});
+    //     return next();
+    //   });
+    //   return;
+
+    case 'create-report-fields': {
+      let data = "";
+      req.on('data', chunk => {
+        data += chunk;
+      });
+      req.on('end', () => {
+        console.log('jsonData=', JSON.parse(data));
+        res.status(200).json({
+          isSuccess: true
+        });
         return next();
       });
       return;
+    }
+
+
+      // try {
+      //   console.log('request', req);
+      //   console.log('request.body', req.body);
+      //   report.fields = req;
+      // } catch(err) {
+      //   res.status(400).json({
+      //     isSuccess: false,
+      //     message: err,
+      //   });
+      //   return next(err);
+      // }
+      // res.status(200).json({
+      //   isSuccess: true
+      // });
+      // return next();
+
+    case 'create-report-files':
+      const form = new multiparty.Form();
+      form.parse(req, function(err, fields, files) {
+        if (err) {
+          res.status(400).json({
+            isSuccess: false,
+            message: err,
+          });
+          return next(err);
+        }
+        report.files = files;
+        res.status(200).json({
+          isSuccess: true
+        });
+        return next();
+      });
+      return;
+
+    case 'read-report': {
+      if (!report || !report.fields || !report.files) {
+        res.status(400).json('No report data');
+        return next();
+      }
+      const jsonReport = {
+        fields: report.fields,
+        files: (report.files['files[]'] || []).map(file => ({
+          originalFilename: file.originalFilename,
+          src: blobToBase64Src(fs.readFileSync(file.path))
+        }))
+      };
+      console.log('jsonReport.fields=', jsonReport.fields)
+      res.json(jsonReport);
+      return next();
+    }
+
     default:
       console.warn(`There is no requested api method "/api/${req.params.id}"`);
       return next();
   }
-});
-
-// TODO render a react page on the server side
-app.use('/test', function(req, res, next) {
-  const { fields: {
-    title = ['no data'],
-    priority = ['no data'],
-    description = ['no data'],
-    screenshot = [''],
-  },
-    files = {}
-  } = report || {};
-  const { fieldName, originalFilename, path } = files['files[]'][0];
-  fs.readFile(path, function(err, data) {
-    if (err) throw err;
-    let srcBase64 = blobToBase64Src(data);
-
-    const reportDoc = `
-      <!doctype html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-        <style>
-          .container {
-            width: 1000px;
-            margin: 0 auto;
-          }
-          .header {
-            margin: 15px 0;
-            text-align: center;
-            font-weight: bold;
-            font-size: 20px;
-          }
-          .content {
-            width: 100%;
-            table-layout: fixed;
-            border-collapse: collapse;
-          }
-          .content th {
-            text-transform: uppercase;
-            background: whitesmoke;
-          }
-          .content th, .content td {
-            border: 1px solid gray;
-            padding: 5px 10px;
-          }
-          .content tr:first-child th:first-child {
-            width: 25%;
-          }
-          .image {
-            max-width: 100%;
-          }
-          .image-header {
-            margin: 5px 0;
-          }
-        </style>
-      </head>
-      <body>
-      <div class="container">
-        <div class="header">
-          OneClick Support's data
-        </div>
-        <table class="content">
-          <tr>
-            <th>Field</th>
-            <th>Value</th>
-          </tr>
-          <tr>
-            <td>title</td>
-            <td>${title[0]}</td>
-          </tr>
-          <tr>
-            <td>priority</td>
-            <td>${priority[0]}</td>
-          </tr>
-          <tr>
-            <td>description</td>
-            <td>${description[0]}</td>
-          </tr>
-          <tr>
-            <td>screenshot</td>
-            <td>
-              <img src="${screenshot[0]}" class="image" alt="no screenshot"/>
-            </td>
-          </tr>
-          <tr>
-            <td>attachment #1</td>
-            <td>
-              <div class="image-header">${originalFilename}</div>
-              <img src="${srcBase64}" class="image" alt="no attached image"/>
-            </td>
-          </tr>
-        </table>
-      </div>
-      </body>
-      </html>
-    `;
-    res.send(reportDoc);
-
-    next();
-  });
 });
 
 app.use(webpackDevMiddleware(compiler, {

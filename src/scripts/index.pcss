@@ -48,6 +48,8 @@
   background: whitesmoke;
   opacity: 1;
   border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 
   &.popup-hidden {
     display: none;
@@ -177,30 +179,39 @@
 .label-description,
 .label-default-screenshot,
 .label-attachment {
-  font-size: var(--large-font-size);
+  font-size: var(--middle-font-size);
 }
 
 .input-title {
   box-sizing: border-box;
   width: 100%;
+  padding: 2px 4px;
   font-size: var(--middle-font-size);
 }
 
 .input-priority {
   box-sizing: border-box;
-  width: 120px;
-  font-size: var(--small-font-size);
+  width: 100%;
+  height: 24px;
+  font-size: var(--middle-font-size);
 }
 
-.input-description {
+.input-description-wrapper {
   position: absolute;
-  display: block;
-  box-sizing: border-box;
   width: 100%;
   top: 20px;
   bottom: 0;
+}
+
+.input-description {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
   resize: none;
   font-size: var(--middle-font-size);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .input-default-screenshot {

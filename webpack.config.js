@@ -19,8 +19,8 @@ module.exports = function(env, argv) {
   return {
     entry: isStartedLocally
       ? {
-        'local-test-preparation-common': './resources/webpack-dev-server',
-        'local-test-preparation': './resources/webpack-dev-server/' + env.tool,
+        'local-test-preparation': `./resources/webpack-dev-server/${env.tool}`,
+        'local-test-bug-report': `./resources/webpack-dev-server/${env.tool}/bug-report`,
         'one-click-support': [...polyfills, './src/scripts/index']
       }
       : {
@@ -46,7 +46,7 @@ module.exports = function(env, argv) {
       rules: [
         {
           test: /\.p?css$/,
-          include: src,
+          include: [resources, src],
           use: [
             {
               loader: 'style-loader'

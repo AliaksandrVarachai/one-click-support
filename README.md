@@ -43,6 +43,7 @@ The script adds a tag `<div id="one-click-support-root"></div>` to the end of bo
 1. Go to the repository: `cd one-click-support-3.0`
 2. Start local server (e.g. `npm start` - see the [table 2](#table-2) below) 
 3. Open <http://localhost:9091> (or a specific link from the [table 2](#table-2) below) where webpack dev server will be launched 
+4. To test locally the content of a **just sent report** open [bug-report](https://localhost:9091/bug-report.html)
 
 
 
@@ -50,8 +51,7 @@ The script adds a tag `<div id="one-click-support-root"></div>` to the end of bo
 
  NPM command                 | Description                                    | Test link
 ---------------------------- |----------------------------------------------- | -----------------------------------------------
- npm start                   | Launches OCS local server for Tableau          | [Tableau](http://localhost:9091/tableau.html)
- npm run server              | Launches proxy https server for Tableau        | [Tableau Proxy](https://localhost:9091/tableau.html)
+ npm run server              | Launches proxy https server for Tableau        | [Tableau Proxy](https://localhost:9091)
 
 
 

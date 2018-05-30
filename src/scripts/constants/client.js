@@ -17,3 +17,8 @@ export const OCS_EVENTS = {
  * @type {string}
  */
 export const PREFIX = 'ocs';
+
+export const NOTIFICATION_TYPES = {
+  empty: 0,
+  error: 1,
+};
