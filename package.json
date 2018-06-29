@@ -39,12 +39,12 @@
     "postcss-loader": "^2.1.4",
     "postcss-nested": "^3.0.0",
     "postcss-scss": "^1.0.5",
+    "react-progressbar": "^15.4.1",
     "style-loader": "^0.21.0",
     "whatwg-fetch": "^2.0.4"
   },
   "repository": "empty",
   "devDependencies": {
-    "body-parser": "^1.18.3",
     "clean-webpack-plugin": "^0.1.19",
     "cors": "^2.8.4",
     "express": "^4.16.3",

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { PREFIX } from '../../constants/client';
+import { PREFIX, SCREENSHOT_NAME } from '../../constants/client';
 
 import './FileUploader.pcss';
 
@@ -37,6 +37,10 @@ export default class FileUploader extends React.PureComponent {
     const fileExt = fileExtArray ? fileExtArray[1].toLowerCase() : '';
     if (!fileExt || extensions.indexOf(fileExt) < 0) {
       alert(`Please, upload the file with correct format (${extensions.join(', ')})`);
+      return false;
+    }
+    if (file.name.toLowerCase() === SCREENSHOT_NAME.toLowerCase()) {
+      alert(`File name "${SCREENSHOT_NAME}" is not allowed for attachments`);
       return false;
     }
     return true;

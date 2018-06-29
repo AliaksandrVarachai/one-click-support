@@ -276,3 +276,26 @@
   }
 }
 
+.progress-bar {
+  height: 4px;
+  overflow: hidden;
+
+  .popup-minimized & {
+    display: none;
+  }
+
+  & > * {
+    display: none;
+  }
+}
+
+.progress-loading {
+
+  .popup-minimized & {
+    display: block;
+  }
+
+  & > * {
+    display: block;
+  }
+}

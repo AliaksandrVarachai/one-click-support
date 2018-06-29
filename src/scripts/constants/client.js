@@ -18,6 +18,12 @@ export const OCS_EVENTS = {
  */
 export const PREFIX = 'ocs';
 
+/**
+ * File name of generated screenshot.
+ * @type {string}
+ */
+export const SCREENSHOT_NAME = 'automatically-generated-screenshot.png';
+
 export const NOTIFICATION_TYPES = {
   empty: 0,
   error: 1,

@@ -14,7 +14,7 @@ export function getClientInfo() {
  */
 function getServerInfo() {
   if (process.env.NODE_IS_STARTED_LOCALLY)
-    return Promise.resolve('Mocked Tableau Server Info');
+    return Promise.resolve({version: 'Mocked Tableau Server Version Info'});
   const xsrfTokenMatch = document.cookie.match(/(^|;\s*)XSRF-TOKEN=([^;$]*)/i);
   if (!xsrfTokenMatch)
     throw Error('Authorization error: there is no X-XSRF-TOKEN cookie');
@@ -27,15 +27,22 @@ function getServerInfo() {
     headers: {
       'X-XSRF-TOKEN': xsrfToken
     },
-    credentials: 'same-origin',
+    apiPrefix: `${location.origin}/vizportal/api/web/v1`
   };
-  return restAPI.post('/vizportal/api/web/v1/getSessionInfo', options).then(json => {
+  return restAPI.post('/getSessionInfo', options).then(json => {
+    const defaultSessionInfo = {
+      reportPath: location.href,
+      reporter: 'Not defined',
+      version: 'Not defined'
+    };
     if (!json || !json.result)
-      return {version: 'Not defined'};
+      return defaultSessionInfo;
     const version = json.result.server.version.externalVersion;
     return {
+      ...defaultSessionInfo,
+      reporter: json.result.user.displayName,
       version: `Tableau Server Version: ${version.major}.${version.minor}.${version.patch}`
-    }
+    };
   });
 }
 

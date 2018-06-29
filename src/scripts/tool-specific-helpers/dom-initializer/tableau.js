@@ -1,4 +1,4 @@
-const maxWaitingTime = 3000; //ms
+const maxWaitingTime = 15000; //ms
 let btn;
 let boundedRightNode;
 let wrapperNode;
@@ -39,13 +39,14 @@ function addOcsButtonAsync() {
       btn.setAttribute('role', 'button');
       btn.setAttribute('ocs-onclick', 'showMainPopup');
       btn.style.position = 'absolute';
-      btn.style.top = '0';
+      btn.style.top = '1px';
       btn.style.height = '50px';
       btn.style.color = '#fff';
       btn.style.opacity = '0.85';
       btn.style.background = 'transparent';
       btn.style.border = '0';
       btn.style.padding = '0';
+      btn.style.fontSize = '20px';
       btn.style.lineHeight = btn.style.height;
       setAdaptiveButtonPosition();
       document.body.appendChild(btn);

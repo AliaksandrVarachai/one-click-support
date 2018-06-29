@@ -26,8 +26,6 @@ class BugReport extends React.PureComponent {
 
   render() {
     const { fields, files } = this.props;
-    console.log('fields=', fields);
-    console.log('files=', files);
     return (
       <div styleName="container">
         <div styleName="header">
@@ -42,23 +40,14 @@ class BugReport extends React.PureComponent {
           </thead>
           <tbody>
           {Object.keys(fields).map(fieldName => (
-            fieldName === 'screenshot'
-              ?
-              <tr key={`field_${fieldName}`}>
-                <td>{fieldName}</td>
-                <td>
-                  <img src={JSON.parse(fields.screenshot)} styleName="image" alt="no screenshot"/>
-                </td>
-              </tr>
-              :
-              <tr key={`field_${fieldName}`}>
-                <td>{fieldName}</td>
-                <td>
-                  <pre>
-                    {JSON.stringify(JSON.parse(fields[fieldName]), null, '  ')}
-                  </pre>
-                </td>
-              </tr>
+            <tr key={`field_${fieldName}`}>
+              <td>{fieldName}</td>
+              <td>
+                <pre>
+                  {JSON.stringify(fields[fieldName], null, '  ')}
+                </pre>
+              </td>
+            </tr>
           ))}
           {files.map((file, inx) => (
             <tr key={`file_${file.originalFilename}`}>
@@ -76,11 +65,11 @@ class BugReport extends React.PureComponent {
   }
 }
 
+const rootNode = document.getElementById('root');
+
 restAPI.getBugReport()
   .then(report => {
-    if (!report) {
-      ReactDOM.render(<BugReport fields={{'no fields': 'no values'}} files={[]} />, document.getElementById('root'));
-      return;
-    }
-    ReactDOM.render(<BugReport fields={report.fields} files={report.files} />, document.getElementById('root'));
+    ReactDOM.render(<BugReport fields={JSON.parse(report.fields)} files={report.files} />, rootNode);
+  }).catch(error => {
+    ReactDOM.render(<h1 style={{color: 'red'}}>{error.message}</h1>, rootNode);
   });

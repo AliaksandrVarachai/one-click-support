@@ -8,7 +8,7 @@ const url = require('url');
 const cors = require('cors');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const { IMAGE_PROXY_PATH, LOCAL_HOSTNAME, LOCAL_PORT } = require('./src/scripts/constants/server');
+const { API_SETTINGS, IMAGE_PROXY_PATH, LOCALHOST_SETTINGS } = require('./src/scripts/constants/server');
 
 const app = express();
 const config = require('./webpack.config.js')({tool: 'tableau'}, {mode: 'development', hot: true});
@@ -16,13 +16,7 @@ const compiler = webpack(config);
 const ocsServerKey = fs.readFileSync('./resources/ssl/ocs-server-key.pem');
 const ocsServerCert = fs.readFileSync('./resources/ssl/ocs-server-cert.pem');
 
-const bodyParser = require('body-parser');
-
-// storage for the last sent bug report
-const report = {
-  fields: {},
-  files: {},
-};
+let report; // stores the last sent bug report
 
 function blobToBase64Src(blob) {
   return 'data:image/png;base64,' + blob.toString('base64');
@@ -53,76 +47,35 @@ app.use(`/${IMAGE_PROXY_PATH}`, function(req, res, next) {
   }
 });
 
-app.use(bodyParser.json());
-
-app.use('/api/:id', function(req, res, next) {
+app.use(`${API_SETTINGS.PATH}/:id`, function(req, res, next) {
   switch (req.params.id) {
-    case 'version':
-      res.status(200).json('3.0');
+    case 'priorities':
+      res.status(200).json([
+        {
+          id: '6efb921d-421a-41f8-ba49-97747c1e0806',
+          name: 'Minor'
+        }, {
+          id: 'd5f5d723-2388-471a-be29-8af8e1aeda92',
+          name: 'Major'
+        }, {
+          id: 'a87a43ec-f59d-4b50-82cf-d254fe072a21',
+          name: 'Blocker'
+        }
+      ]);
       return next();
-    // case 'create-report':
-    //   const form = new multiparty.Form();
-    //   form.parse(req, function(err, { fields }, files) {
-    //     if (err) {
-    //       res.status(400).json(err);
-    //       return next(err);
-    //     }
-    //     report = {
-    //       fields,
-    //       files,
-    //     };
-    //     console.log('report.fields=', report.fields)
-    //     res.status(200).json({isSuccess: true});
-    //     return next();
-    //   });
-    //   return;
 
-    case 'create-report-fields': {
-      let data = "";
-      req.on('data', chunk => {
-        data += chunk;
-      });
-      req.on('end', () => {
-        console.log('jsonData=', JSON.parse(data));
-        res.status(200).json({
-          isSuccess: true
-        });
-        return next();
-      });
-      return;
-    }
-
-
-      // try {
-      //   console.log('request', req);
-      //   console.log('request.body', req.body);
-      //   report.fields = req;
-      // } catch(err) {
-      //   res.status(400).json({
-      //     isSuccess: false,
-      //     message: err,
-      //   });
-      //   return next(err);
-      // }
-      // res.status(200).json({
-      //   isSuccess: true
-      // });
-      // return next();
-
-    case 'create-report-files':
+    case 'issue':
       const form = new multiparty.Form();
       form.parse(req, function(err, fields, files) {
         if (err) {
-          res.status(400).json({
-            isSuccess: false,
-            message: err,
-          });
+          res.status(400).json(err);
           return next(err);
         }
-        report.files = files;
-        res.status(200).json({
-          isSuccess: true
-        });
+        report = {
+          fields: JSON.parse(fields.fields[0]),
+          files: files['files'] || [],
+        };
+        res.status(200).json(null);
         return next();
       });
       return;
@@ -133,19 +86,18 @@ app.use('/api/:id', function(req, res, next) {
         return next();
       }
       const jsonReport = {
-        fields: report.fields,
-        files: (report.files['files[]'] || []).map(file => ({
+        fields: JSON.stringify(report.fields),
+        files: report.files.map(file => ({
           originalFilename: file.originalFilename,
           src: blobToBase64Src(fs.readFileSync(file.path))
         }))
       };
-      console.log('jsonReport.fields=', jsonReport.fields)
       res.json(jsonReport);
       return next();
     }
 
     default:
-      console.warn(`There is no requested api method "/api/${req.params.id}"`);
+      console.warn(`There is no requested api method "${API_SETTINGS.PATH}/${req.params.id}"`);
       return next();
   }
 });
@@ -163,8 +115,8 @@ https.createServer({
   requestCert: false,
   ca: [ocsServerCert],
 }, app).listen({
-  host: LOCAL_HOSTNAME,
-  port: LOCAL_PORT
+  host: LOCALHOST_SETTINGS.NAME,
+  port: LOCALHOST_SETTINGS.PORT
 }, () => {
-  console.log(`Server is launched on https://${LOCAL_HOSTNAME}:${LOCAL_PORT}`);
+  console.log(`Server is launched on https://${LOCALHOST_SETTINGS.NAME}:${LOCALHOST_SETTINGS.PORT}`);
 });

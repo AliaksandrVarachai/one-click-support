@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import ReactEventOutside from 'react-event-outside';
 import classnames from 'classnames';
 import html2canvas from 'html2canvas';
+import Progress from 'react-progressbar';
 import { IMAGE_PROXY_PATH } from './constants/server';
-import { OCS_ROOT_ID, OCS_EVENTS, PREFIX, NOTIFICATION_TYPES } from './constants/client';
+import { OCS_ROOT_ID, OCS_EVENTS, PREFIX, NOTIFICATION_TYPES, SCREENSHOT_NAME } from './constants/client';
 import FileUploader from './components/FileUploader/FileUploader';
 import restApi from './rest-api';
 import Notification from './components/Notification/Notification';
@@ -16,9 +17,10 @@ import { validateFormFields } from './helpers/validators';
 
 import './index.pcss';
 
-const HIDDEN = 'hidden',
-      VISIBLE = 'normal',
-      MINIMIZED = 'minimized';
+const HIDDEN = 0,
+      VISIBLE = 1,
+      MINIMIZED = 2;
+const PROGRESS_BAR_ANIMATED_LENGTH = 100;
 
 
 class Popup extends React.PureComponent {
@@ -35,11 +37,15 @@ class Popup extends React.PureComponent {
       },
       formFields: {
         title: '',
-        priority: 'minor',
+        priorityId: '',
+        priorities: [], // [{id: 'id-1', name: 'name-1'}, ...]
         description: '',
-      }
+      },
+      isLoading: false,
+      loadingProgress: 0,
     };
-    this.image = React.createRef();
+    this.screenshotRef = React.createRef();
+    this.screenshotBlob = null;
   }
 
   handleEvent = (event) => {
@@ -52,11 +58,23 @@ class Popup extends React.PureComponent {
       switch(eventOutsideName) {
         case 'showMainPopup':
           domInitializer.disableOcsButton(true);
-          this.takeScreenshot().then(canvas => {
+          Promise.all([
+            restApi.getSettings(),
+            this.takeScreenshot()
+          ]).then(([settings, canvas]) => {
+            const priorities = settings.map(({id, name}) => ({ id, name }));
             this.setState({
+              formFields: {
+                ...this.state.formFields,
+                priorities,
+                priorityId: priorities[0].id
+              },
               visibility: VISIBLE
             });
-            this.image.current.src = canvas.toDataURL('image/png', 1);
+            this.screenshotRef.current.src = canvas.toDataURL('image/png');
+            canvas.toBlob(blob => {this.screenshotBlob = blob}, 'image/png');
+          }).catch(error => {
+            alert(error instanceof Error ? error.message : error);
           });
           break;
         default:
@@ -91,37 +109,52 @@ class Popup extends React.PureComponent {
     if( !this.validateForm() ) {
       return;
     }
+    let priorityName;
+    for (let p of formFields.priorities) {
+      if (p.id === formFields.priorityId) {
+        priorityName = p.name;
+        break;
+      }
+    }
     toolInfoCollector.getServerInfo()
       .then(serverInfo => {
         const reportFields = {
           title: formFields.title,
-          priority: formFields.priority,
+          priorityId: formFields.priorityId,
+          priorityName: priorityName,
           description: formFields.description,
-          browser: getBrowserInfo(),
-          console: getConsoleInfo(),
+          browserInfo: getBrowserInfo(),
+          consoleMessages: getConsoleInfo(),
           uncaughtErrors: getUncaughtErrorsInfo(),
-          serverInfo,
+          serverInfo: {version: serverInfo.version},
+          reporter: serverInfo.reporter,
+          reportPath: serverInfo.reportPath,
         };
-        if (isScreenshot)
-          reportFields.screenshot = this.image.current.src;
-        return Promise.all([
-          restApi.sendBugReportFields(reportFields),
-          restApi.sendBugReportFiles(storedFiles),
-        ]);
-        // return restApi.sendBugReport(reportFields, storedFiles);
-      })
-      .then(([responseFields, responseFiles]) => {
-        console.log('Response from a server:');
-        console.log('responseFields', responseFields);
-        console.log('responseFiles', responseFiles);
+        const reportFiles = {...storedFiles};
+        if (isScreenshot) {
+          reportFiles[SCREENSHOT_NAME] = {content: this.screenshotBlob};
+        }
         this.setState({
-          visibility: HIDDEN
+          isLoading: true,
+        });
+        return restApi.sendBugReport(reportFields, reportFiles, this.uploadProgressBarHandler);
+      })
+      .then(empty => {
+        this.setState({
+          isLoading: false,
+          loadingProgress: 0,
+          visibility: HIDDEN,
         });
         domInitializer.disableOcsButton(false);
-        alert('Message is sent');
+        alert('Bug report is created.');
       })
-      .catch(message => {
-        console.log(message);
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          loadingProgress: 0
+        });
+        domInitializer.disableOcsButton(false);
+        alert(error.message);
       });
   };
 
@@ -135,13 +168,19 @@ class Popup extends React.PureComponent {
     const revertDOMChanges = screenshotDOMPreprocess();
     return html2canvas(document.body, {
       async: true,  // If there are unwilling side effects related to the direct DOM manipulations, try {async: false}
-      proxy: `${location.protocol}//${location.host}/${IMAGE_PROXY_PATH}`,
+      proxy: `${location.protocol}//${location.host}${IMAGE_PROXY_PATH}`,
       backgroundColor: null,
       useCORS: true,
       logging: process.env.NODE_ENV !== 'production',
     }).then(canvas => {
       revertDOMChanges();
       return canvas;
+    });
+  };
+
+  uploadProgressBarHandler = (e) => {
+    this.setState({
+      loadingProgress: e.loaded / e.total * PROGRESS_BAR_ANIMATED_LENGTH
     });
   };
 
@@ -186,7 +225,7 @@ class Popup extends React.PureComponent {
     });
   };
 
-  inputChangeHandler = (e, field) => {
+  inputChangeHandler = (field) => (e) => {
     e.preventDefault();
     const { formFields, validationErrors } = this.state;
     this.setState({
@@ -199,7 +238,7 @@ class Popup extends React.PureComponent {
     if (validationErrors.type !== NOTIFICATION_TYPES.empty) {
       this.validateForm();
     }
-  }
+  };
 
   clearValidationErrors = () => {
     this.setState({
@@ -227,7 +266,17 @@ class Popup extends React.PureComponent {
   }
 
   render() {
-    const { visibility, tab, isScreenshot, storedFiles, formFields, validationErrors } = this.state;
+    const {
+      visibility,
+      tab,
+      isScreenshot,
+      storedFiles,
+      formFields,
+      validationErrors,
+      isLoading,
+      loadingProgress,
+      loadingAnimation
+    } = this.state;
     return (
       <div styleName={classnames('popup', {
         'popup-hidden': visibility === HIDDEN,
@@ -238,6 +287,16 @@ class Popup extends React.PureComponent {
           <div className="material-icons" styleName="action action-minimize" onClick={this.minimizeHandler}>border_bottom</div>
           <div className="material-icons" styleName="action action-show" onClick={this.showHandler}>border_outer</div>
           <span styleName="header-title">OneClick Support</span>
+        </div>
+        <div
+          styleName={classnames("progress-bar", {"progress-loading": isLoading})}
+        >
+          <Progress
+            completed={loadingProgress}
+            animation={loadingAnimation}
+            color={'#367e9c'}
+            height={4}
+          />
         </div>
 
         <div styleName={classnames('content', {'display-none': visibility !== VISIBLE})}>
@@ -257,7 +316,7 @@ class Popup extends React.PureComponent {
                         id={`${PREFIX}-title`}
                         styleName="input-title"
                         value={formFields.title}
-                        onChange={(e) => this.inputChangeHandler(e, 'title')}
+                        onChange={this.inputChangeHandler('title')}
                       />
                     </div>
                   </div>
@@ -266,15 +325,19 @@ class Popup extends React.PureComponent {
                       <label htmlFor={`${PREFIX}-priority`} styleName="label-priority">Priority</label>
                     </div>
                     <div styleName="cell">
-                      <select
-                        id={`${PREFIX}-priority`}
-                        styleName="input-priority"
-                        value={formFields.priority}
-                        onChange={(e) => this.inputChangeHandler(e, 'priority')}
+                      <select id={`${PREFIX}-priority`}
+                              styleName="input-priority"
+                              value={formFields.priorityId}
+                              onChange={this.inputChangeHandler('priorityId')}
                       >
-                        <option value="blocker">Blocker</option>
-                        <option value="major">Major</option>
-                        <option value="minor">Minor</option>
+                        {formFields.priorities.map(priority => (
+                          <option value={priority.id}
+                                  checked={priority.id === formFields.priorityId}
+                                  key={priority.id}
+                          >
+                            {priority.name}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -286,7 +349,7 @@ class Popup extends React.PureComponent {
                               styleName="input-description"
                               placeholder="Please provide the description here"
                               value={formFields.description}
-                              onChange={(e) => this.inputChangeHandler(e, 'description')}
+                              onChange={this.inputChangeHandler('description')}
                     />
                   </div>
                 </div>
@@ -307,7 +370,7 @@ class Popup extends React.PureComponent {
             {/* screenshot-preview tab */}
             <div styleName={classnames('tab', {'display-none': tab !== 'screenshot-preview'})}>
               <div styleName="tab-content">
-                <img ref={this.image} src="//:0" alt="no image" styleName="screenshot"/>
+                <img ref={this.screenshotRef} src="//:0" alt="no image" styleName="screenshot"/>
               </div>
             </div>
 
@@ -324,13 +387,19 @@ class Popup extends React.PureComponent {
         </div>
 
         <div styleName="footer">
-          <button styleName={classnames('button', {'display-none': tab !== 'main'})}
-                  onClick={this.closeHandler}>
+          <button
+            styleName={classnames('button', {'display-none': tab !== 'main'})}
+            onClick={this.closeHandler}
+            disabled={isLoading}
+          >
             <i className="material-icons">block</i>
             Cancel
           </button>
-          <button styleName={classnames('button', {'display-none': tab !== 'main'})}
-                  onClick={this.sendHandler}>
+          <button
+            styleName={classnames('button', {'display-none': tab !== 'main'})}
+            onClick={this.sendHandler}
+            disabled={isLoading}
+          >
             <i className="material-icons">check</i>
             Send
           </button>
@@ -354,6 +423,6 @@ domInitializer.addOcsButtonAsync()
     const InitializedPopup = ReactEventOutside(Object.keys(OCS_EVENTS))(Popup);
     ReactDOM.render(<InitializedPopup/>, ocsRoot);
   })
-  .catch(msg => {
-    console.log(msg);
+  .catch(error => {
+    console.log(error);
   });
